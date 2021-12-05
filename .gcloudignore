@@ -1,0 +1,14 @@
+.github/
+node_modules/
+public/
+.idea/
+src/
+.env
+.eslintignore
+.eslintrc
+.gitignore
+.prettierrc
+package.json
+README.md
+tsconfig.json
+yarn.lock
