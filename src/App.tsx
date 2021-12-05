@@ -12,7 +12,7 @@ function App() {
   return (
     <>
       <NavBar />
-      <Container maxW="container.xl" marginTop="36">
+      <Container maxW="container.xl" marginTop="36" marginBottom="24">
         <Switch>
           <Route exact path={routes.householdsList}>
             <HouseholdsList />

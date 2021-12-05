@@ -14,9 +14,6 @@ class HouseholdService extends Service {
     this.api.put(`/households/${id}`, payload);
 
   deleteHousehold = (id: number): ServiceResponse<void> => this.api.delete(`/households/${id}`);
-
-  deleteMember = (householdID: number, userID: number): ServiceResponse<void> =>
-    this.api.delete(`/households/${householdID}/members/${userID}`);
 }
 
 export const householdService = new HouseholdService();

@@ -2,6 +2,11 @@ export interface EditHouseholdRequest {
   name: string;
 }
 
+export interface AddMemberRequest {
+  householdID: number;
+  userEmail: string;
+}
+
 export interface HouseholdDTO {
   id: number;
   name: string;

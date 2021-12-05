@@ -20,9 +20,7 @@ export const ChoresList: FC<ChoresListProps> = ({ householdID }) => {
   return (
     <>
       <Flex justify="space-between" align="center" marginBottom="8">
-        <Text fontSize="2xl" marginBottom="8">
-          Nadchodzące obowiązki domowe
-        </Text>
+        <Text fontSize="2xl">Nadchodzące obowiązki domowe</Text>
         <Button
           leftIcon={<BiPlus size="20px" />}
           onClick={redirectToChoreCreator}

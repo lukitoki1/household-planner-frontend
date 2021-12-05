@@ -3,10 +3,10 @@ import { UserDTO } from '../../api/dto';
 import { Button, HStack, Td, Tr } from '@chakra-ui/react';
 import { BiUserX } from 'react-icons/all';
 import { useMutation } from 'react-query';
-import { householdService } from '../../api/services/HouseholdService';
 import { queryClient } from '../../api/queryClient';
 import { Queries } from '../../api/queries';
 import { useAppToast } from '../../components/Toast/useToast';
+import { memberService } from '../../api/services/MemberService';
 
 export interface MembersListItemProps {
   member: UserDTO;
@@ -14,7 +14,7 @@ export interface MembersListItemProps {
 }
 
 export const MembersListItem: FC<MembersListItemProps> = ({ member, householdID }) => {
-  const mutation = useMutation(() => householdService.deleteMember(householdID, member.id));
+  const mutation = useMutation(() => memberService.deleteMember(householdID, member.id));
   const { triggerToast } = useAppToast();
 
   const deleteMember = async () => {
