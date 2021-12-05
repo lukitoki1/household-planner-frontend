@@ -3,7 +3,7 @@ import { useHistory, useParams } from 'react-router';
 import { useMutation, useQuery } from 'react-query';
 import { useAppToast } from '../../components/Toast/useToast';
 import { householdService } from '../../api/services/HouseholdService';
-import { HouseholdQueries } from '../../api/queries';
+import { Queries } from '../../api/queries';
 import {
   HouseholdFormFields,
   HouseholdFormValues,
@@ -14,6 +14,7 @@ import { Center, Spinner, Text } from '@chakra-ui/react';
 import { householdFormValidationSchema } from '../../forms/HouseholdForm/householdFormValidation';
 import { HouseholdForm } from '../../forms/HouseholdForm/HouseholdForm';
 import { EditHouseholdRequest } from '../../api/dto';
+import { replaceParam } from '../../helpers/url';
 
 export const HouseholdEditor: FC = () => {
   const history = useHistory();
@@ -26,7 +27,7 @@ export const HouseholdEditor: FC = () => {
     householdService.updateHousehold(id, payload),
   );
 
-  const { data, isLoading } = useQuery(HouseholdQueries.HOUSEHOLD_DETAILS, () =>
+  const { data, isLoading } = useQuery(Queries.HOUSEHOLD_DETAILS, () =>
     householdService.getHouseholdDetails(id),
   );
 
@@ -47,7 +48,7 @@ export const HouseholdEditor: FC = () => {
   };
 
   const onCancel = () => {
-    history.push(routes.householdDetails.replace(`:${HOUSEHOLD_ID_PARAM}`, householdID));
+    history.push(replaceParam(routes.householdDetails, HOUSEHOLD_ID_PARAM, householdID));
   };
 
   const onSubmit = async (

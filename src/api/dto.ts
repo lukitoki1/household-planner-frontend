@@ -14,10 +14,12 @@ export interface UserDTO {
 }
 
 export interface ChoreDTO {
+  id: number;
   name: string;
   description: string;
-  user: UserDTO;
+  user?: UserDTO;
   household: HouseholdDTO;
+  nextOccurrence: string;
 }
 
 export type GetHouseholdMembersResponse = UserDTO[]
