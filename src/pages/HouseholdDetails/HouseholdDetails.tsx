@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { useHistory, useParams } from 'react-router';
-import { HouseholdDetailsParams, routes } from '../../routes';
-import { Button, Flex, Text } from '@chakra-ui/react';
+import { HOUSEHOLD_ID_PARAM, HouseholdDetailsParams, routes } from '../../routes';
+import { Button, Flex, Tab, TabList, TabPanel, TabPanels, Tabs, Text } from '@chakra-ui/react';
 import { HouseholdDTO } from '../../api/dto';
 import { BiEdit } from 'react-icons/all';
 
@@ -14,8 +14,8 @@ export const HouseholdDetails: FC = () => {
     name: 'Gospodarstwo Testowe',
   };
 
-  const redirectToHouseholdCreator = () => {
-    history.push(routes.householdCreator);
+  const redirectToHouseholdEditor = () => {
+    history.push(routes.householdEditor.replace(`:${HOUSEHOLD_ID_PARAM}`, householdID));
   };
 
   return (
@@ -26,15 +26,25 @@ export const HouseholdDetails: FC = () => {
         </Text>
         <Button
           leftIcon={<BiEdit size="20px" />}
-          onClick={redirectToHouseholdCreator}
+          onClick={redirectToHouseholdEditor}
           colorScheme="blue"
         >
           Edytuj
         </Button>
       </Flex>
       <Text paddingLeft="1" fontSize="md" color="gray.500" marginBottom="8">
-        ID: {household.id}
+        Gospodarstwo #{household.id}
       </Text>
+      <Tabs>
+        <TabList>
+          <Tab>Obowiązki domowe</Tab>
+          <Tab>Członkowie</Tab>
+        </TabList>
+        <TabPanels>
+          <TabPanel>1</TabPanel>
+          <TabPanel>2</TabPanel>
+        </TabPanels>
+      </Tabs>
     </>
   );
 };

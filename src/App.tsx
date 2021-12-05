@@ -6,6 +6,7 @@ import { HouseholdsList } from './pages/HouseholdsList/HouseholdsList';
 import { routes } from './routes';
 import { HouseholdDetails } from './pages/HouseholdDetails/HouseholdDetails';
 import { HouseholdCreator } from './pages/HouseholdCreator/HouseholdCreator';
+import { HouseholdEditor } from './pages/HouseholdEditor/HouseholdEditor';
 
 function App() {
   return (
@@ -21,6 +22,9 @@ function App() {
           </Route>
           <Route exact path={routes.householdDetails}>
             <HouseholdDetails />
+          </Route>
+          <Route exact path={routes.householdEditor}>
+            <HouseholdEditor />
           </Route>
           <Redirect to={routes.householdsList} />
         </Switch>

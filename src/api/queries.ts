@@ -1,3 +1,4 @@
 export enum HouseholdQueries {
-  HOUSEHOLDS = 'households',
+  HOUSEHOLDS_LIST = 'householdsList',
+  HOUSEHOLD_DETAILS = 'householdDetails',
 }

@@ -1,9 +1,13 @@
 import { FC } from 'react';
 import { Button, HStack, Td, Tr } from '@chakra-ui/react';
 import { BiChevronRight, BiTrash } from 'react-icons/all';
-import { routes } from '../../routes';
+import { HOUSEHOLD_ID_PARAM, routes } from '../../routes';
 import { useHistory } from 'react-router';
 import { HouseholdDTO } from '../../api/dto';
+import { useMutation, useQueryClient } from 'react-query';
+import { householdService } from '../../api/services/HouseholdService';
+import { useAppToast } from '../../components/Toast/useToast';
+import { HouseholdQueries } from '../../api/queries';
 
 export interface HouseholdsListItemProps {
   household: HouseholdDTO;
@@ -11,13 +15,27 @@ export interface HouseholdsListItemProps {
 
 export const HouseholdsListItem: FC<HouseholdsListItemProps> = ({ household }) => {
   const history = useHistory();
+  const { triggerToast } = useAppToast();
+  const queryClient = useQueryClient();
+
+  const mutation = useMutation(() => householdService.deleteHousehold(household.id));
 
   const redirectToHouseholdDetails = () => {
-    history.push(routes.householdDetails.replace(':householdID', household.id.toString()));
+    history.push(
+      routes.householdDetails.replace(`:${HOUSEHOLD_ID_PARAM}`, household.id.toString()),
+    );
   };
 
-  const deleteHousehold = () => {
-    console.log('deleting household...');
+  const deleteHousehold = async () => {
+    try {
+      await mutation.mutateAsync();
+      triggerToast({
+        title: 'Usunięto gospodarstwo domowe',
+        description: `Pomyślnie usunięto gospodarstwo domowe ${household.id}`,
+        status: 'success',
+      });
+      await queryClient.invalidateQueries(HouseholdQueries.HOUSEHOLDS_LIST);
+    } catch {}
   };
 
   return (

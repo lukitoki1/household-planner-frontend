@@ -1,45 +1,43 @@
 import { FC } from 'react';
 import { Text } from '@chakra-ui/react';
 import { Formik, FormikHelpers } from 'formik';
-import { HouseholdCreatorForm } from './HouseholdCreatorForm';
-import {
-  HouseholdCreatorFormFields,
-  HouseholdCreatorFormValues,
-} from './householdCreatorFormValues';
-import { useMutation, useQueryClient } from 'react-query';
-import { HouseholdQueries } from '../../api/queries';
+import { useMutation } from 'react-query';
 import { householdService } from '../../api/services/HouseholdService';
-import { householdCreatorFirmValidationSchema } from './householdCreatorFormValidation';
 import { useAppToast } from '../../components/Toast/useToast';
 import { useHistory } from 'react-router';
 import { routes } from '../../routes';
+import {
+  HouseholdFormFields,
+  HouseholdFormValues,
+} from '../../forms/HouseholdForm/householdFormValues';
+import { householdFormValidationSchema } from '../../forms/HouseholdForm/householdFormValidation';
+import { HouseholdForm } from '../../forms/HouseholdForm/HouseholdForm';
 
 export const HouseholdCreator: FC = () => {
   const history = useHistory();
-  const queryClient = useQueryClient();
   const { triggerToast } = useAppToast();
 
-  const mutation = useMutation(householdService.createHousehold, {
-    onSettled: () => queryClient.invalidateQueries(HouseholdQueries.HOUSEHOLDS),
-  });
+  const mutation = useMutation(householdService.createHousehold);
 
-  const initialValues: HouseholdCreatorFormValues = {
-    [HouseholdCreatorFormFields.NAME]: '',
+  const initialValues: HouseholdFormValues = {
+    [HouseholdFormFields.NAME]: '',
+  };
+
+  const onCancel = () => {
+    history.push(routes.householdsList);
   };
 
   const onSubmit = async (
-    values: HouseholdCreatorFormValues,
-    actions: FormikHelpers<HouseholdCreatorFormValues>,
+    values: HouseholdFormValues,
+    actions: FormikHelpers<HouseholdFormValues>,
   ) => {
     try {
       await mutation.mutateAsync({
-        name: values[HouseholdCreatorFormFields.NAME],
+        name: values[HouseholdFormFields.NAME],
       });
       triggerToast({
         title: 'Utworzono gospodarstwo domowe',
-        description: `Pomyślnie utworzono gospodarstwo domowe ${
-          values[HouseholdCreatorFormFields.NAME]
-        }`,
+        description: `Pomyślnie utworzono gospodarstwo domowe ${values[HouseholdFormFields.NAME]}`,
         status: 'success',
       });
       actions.setSubmitting(false);
@@ -54,10 +52,10 @@ export const HouseholdCreator: FC = () => {
       </Text>
       <Formik
         initialValues={initialValues}
-        validationSchema={householdCreatorFirmValidationSchema}
+        validationSchema={householdFormValidationSchema}
         onSubmit={onSubmit}
       >
-        <HouseholdCreatorForm />
+        <HouseholdForm onCancel={onCancel} />
       </Formik>
     </>
   );

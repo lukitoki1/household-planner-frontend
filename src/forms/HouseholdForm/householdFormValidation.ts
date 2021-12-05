@@ -1,10 +1,10 @@
 import * as yup from 'yup';
-import { HouseholdCreatorFormFields } from './householdCreatorFormValues';
+import { HouseholdFormFields } from './householdFormValues';
 
 const HOUSEHOLD_NAME_MAX = 100;
 
-export const householdCreatorFirmValidationSchema = yup.object().shape({
-  [HouseholdCreatorFormFields.NAME]: yup
+export const householdFormValidationSchema = yup.object().shape({
+  [HouseholdFormFields.NAME]: yup
     .string()
     .required('Pole jest wymagane')
     .max(

@@ -1,4 +1,4 @@
-export interface CreateHouseholdRequest {
+export interface EditHouseholdRequest {
   name: string;
 }
 
