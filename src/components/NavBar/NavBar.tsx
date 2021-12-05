@@ -1,7 +1,7 @@
-import {FC} from "react";
-import {Box, Container, Flex} from "@chakra-ui/react";
-import {NavBarUserMenu} from "./NavBarUserManu";
-import {NavBarLogo} from "./NavBarLogo";
+import { FC } from 'react';
+import { Box, Container, Flex } from '@chakra-ui/react';
+import { NavBarUserMenu } from './NavBarUserManu';
+import { NavBarLogo } from './NavBarLogo';
 
 export const NavBar: FC = () => {
   return (
@@ -16,8 +16,8 @@ export const NavBar: FC = () => {
     >
       <Container maxW="container.xl">
         <Flex justify="space-between">
-          <NavBarLogo/>
-          <NavBarUserMenu/>
+          <NavBarLogo />
+          <NavBarUserMenu />
         </Flex>
       </Container>
     </Box>

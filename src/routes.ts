@@ -1,5 +1,10 @@
-export const routes = {
-  default: "/",
-  settings: "/settings",
-  householdsList: "/households"
+export interface HouseholdDetailsParams {
+  householdID: string;
 }
+
+export const routes = {
+  default: '/',
+  householdsList: '/households',
+  householdCreator: '/households/new',
+  householdDetails: '/households/:householdID',
+};
