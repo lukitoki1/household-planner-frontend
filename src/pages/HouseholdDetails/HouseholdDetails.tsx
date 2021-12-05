@@ -26,7 +26,7 @@ export const HouseholdDetails: FC = () => {
   return (
     <>
       <Flex justify="space-between" align="center">
-        <Text fontSize="4xl" fontStyle="italic" color="blue.600">
+        <Text fontSize="4xl" color="blue.600">
           {household.name}
         </Text>
         <Button

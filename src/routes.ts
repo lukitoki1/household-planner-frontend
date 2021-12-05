@@ -12,6 +12,8 @@ export interface HouseholdEditorParams {
 export const routes = {
   default: '/',
 
+  login: '/login',
+
   householdsList: '/households',
   householdCreator: '/households/new',
   householdDetails: `/households/:${HOUSEHOLD_ID_PARAM}`,

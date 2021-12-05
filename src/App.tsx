@@ -7,8 +7,23 @@ import { routes } from './routes';
 import { HouseholdDetails } from './pages/HouseholdDetails/HouseholdDetails';
 import { HouseholdCreator } from './pages/HouseholdCreator/HouseholdCreator';
 import { HouseholdEditor } from './pages/HouseholdEditor/HouseholdEditor';
+import { useAuth } from './store/auth/authHooks';
+import { LogIn } from './pages/LogIn/LogIn';
 
 function App() {
+  const { isUserLoggedIn } = useAuth();
+
+  if (!isUserLoggedIn) {
+    return (
+      <Switch>
+        <Route exact path={routes.login}>
+          <LogIn />
+        </Route>
+        <Redirect to={routes.login} />
+      </Switch>
+    );
+  }
+
   return (
     <>
       <NavBar />

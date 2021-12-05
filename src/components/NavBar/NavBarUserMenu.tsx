@@ -1,12 +1,15 @@
 import { FC } from 'react';
 import { Button, Menu, MenuButton, MenuItem, MenuList } from '@chakra-ui/react';
 import { BiChevronDown, BiChevronUp, BiUserCircle } from 'react-icons/all';
+import { useAuth } from '../../store/auth/authHooks';
 
 export const NavBarUserMenu: FC = () => {
+  const { logUserOut } = useAuth();
+
   const userName = 'Testowy Użytkownik';
 
   const logout = () => {
-    console.log('logging out...');
+    logUserOut();
   };
 
   return (

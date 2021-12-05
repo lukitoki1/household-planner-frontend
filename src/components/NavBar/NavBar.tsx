@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { Box, Container, Flex } from '@chakra-ui/react';
-import { NavBarUserMenu } from './NavBarUserManu';
+import { NavBarUserMenu } from './NavBarUserMenu';
 import { NavBarLogo } from './NavBarLogo';
 
 export const NavBar: FC = () => {
