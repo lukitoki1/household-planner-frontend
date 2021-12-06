@@ -1,12 +1,10 @@
 import { FC } from 'react';
-import { Button, Center, Flex, Spinner, Table, Tbody, Text, Th, Thead, Tr } from '@chakra-ui/react';
+import { Button, Flex, Table, Tbody, Text, Th, Thead, Tr } from '@chakra-ui/react';
+import { choreMocks } from './mocks';
 import { ChoresListItem } from './ChoresListItem';
 import { BiPlus } from 'react-icons/all';
 import { useHistory } from 'react-router';
 import { routes } from '../../routes';
-import { useQuery } from 'react-query';
-import { Queries } from '../../api/queries';
-import { choreService } from '../../api/services/ChoreService';
 
 export interface ChoresListProps {
   householdID: number;
@@ -15,25 +13,9 @@ export interface ChoresListProps {
 export const ChoresList: FC<ChoresListProps> = ({ householdID }) => {
   const history = useHistory();
 
-  const { data, isError, isLoading } = useQuery(Queries.CHORES_LIST, () =>
-    choreService.getHouseholdChores(householdID),
-  );
-
   const redirectToChoreCreator = () => {
     history.push(routes.choreCreator);
   };
-
-  if (isLoading) {
-    return (
-      <Center>
-        <Spinner />
-      </Center>
-    );
-  }
-
-  if (isError || !data) {
-    return <Center>Podczas pobierania listy obowiązków domowych wystąpił błąd.</Center>;
-  }
 
   return (
     <>
@@ -57,7 +39,7 @@ export const ChoresList: FC<ChoresListProps> = ({ householdID }) => {
           </Tr>
         </Thead>
         <Tbody>
-          {data.map((chore) => (
+          {choreMocks.map((chore) => (
             <ChoresListItem key={chore.id} chore={chore} />
           ))}
         </Tbody>
