@@ -1,18 +1,36 @@
 import { FC } from 'react';
 import { useHistory, useParams } from 'react-router';
 import { HOUSEHOLD_ID_PARAM, HouseholdDetailsParams, routes } from '../../routes';
-import { Button, Flex, Tab, TabList, TabPanel, TabPanels, Tabs, Text } from '@chakra-ui/react';
+import {
+  Button,
+  Center,
+  Flex,
+  Spinner,
+  Tab,
+  TabList,
+  TabPanel,
+  TabPanels,
+  Tabs,
+  Text,
+} from '@chakra-ui/react';
 import { HouseholdDTO } from '../../api/dto';
 import { BiEdit } from 'react-icons/all';
 import { replaceParam } from '../../helpers/url';
 import { ChoresList } from './ChoresList';
 import { MembersList } from './MembersList';
+import { useQuery } from 'react-query';
+import { Queries } from '../../api/queries';
+import { householdService } from '../../api/services/HouseholdService';
 
 export const HouseholdDetails: FC = () => {
   const history = useHistory();
-  const { householdID } = useParams<HouseholdDetailsParams>();
 
+  const { householdID } = useParams<HouseholdDetailsParams>();
   const id = Number.parseInt(householdID);
+
+  const { data, isLoading, isError } = useQuery(Queries.HOUSEHOLD_DETAILS, () =>
+    householdService.getHouseholdDetails(id),
+  );
 
   const household: HouseholdDTO = {
     id,
@@ -22,6 +40,18 @@ export const HouseholdDetails: FC = () => {
   const redirectToHouseholdEditor = () => {
     history.push(replaceParam(routes.householdEditor, HOUSEHOLD_ID_PARAM, householdID));
   };
+
+  if (isLoading) {
+    return (
+      <Center>
+        <Spinner />
+      </Center>
+    );
+  }
+
+  if (isError || !data) {
+    return <Center>Podczas pobierania szczegółów gospodarsta domowego wystąpił błąd.</Center>;
+  }
 
   return (
     <>

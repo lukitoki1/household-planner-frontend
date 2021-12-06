@@ -1,5 +1,5 @@
 import { Service, ServiceResponse } from './Service';
-import { AddMemberRequest } from '../dto';
+import { AddMemberRequest, UserDTO } from '../dto';
 
 class MemberService extends Service {
   deleteMember = (householdID: number, userID: number): ServiceResponse<void> =>
@@ -7,6 +7,9 @@ class MemberService extends Service {
 
   addMember = (payload: AddMemberRequest): ServiceResponse<void> =>
     this.api.post(`/members`, payload);
+
+  getHouseholdMembers = (householdID: number): ServiceResponse<UserDTO[]> =>
+    this.api.get(`/members`, { params: { householdID } });
 }
 
 export const memberService = new MemberService();

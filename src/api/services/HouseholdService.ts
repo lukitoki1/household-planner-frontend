@@ -2,7 +2,7 @@ import { Service, ServiceResponse } from './Service';
 import { EditHouseholdRequest, HouseholdDTO } from '../dto';
 
 class HouseholdService extends Service {
-  getHouseholdsList = (): ServiceResponse<HouseholdDTO> => this.api.get('/households');
+  getHouseholdsList = (): ServiceResponse<HouseholdDTO[]> => this.api.get('/households');
 
   getHouseholdDetails = (id: number): ServiceResponse<HouseholdDTO> =>
     this.api.get(`/households/${id}`);
