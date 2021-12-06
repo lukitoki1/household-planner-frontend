@@ -1,32 +1,14 @@
 import { FC } from 'react';
-import { Center, Spinner, Table, Tbody, Text, Th, Thead, Tr } from '@chakra-ui/react';
+import { Table, Tbody, Text, Th, Thead, Tr } from '@chakra-ui/react';
+import { memberMocks } from './mocks';
 import { MembersListItem } from './MembersListItem';
 import { NewMember } from './NewMember';
-import { useQuery } from 'react-query';
-import { Queries } from '../../api/queries';
-import { memberService } from '../../api/services/MemberService';
 
 export interface MembersListProps {
   householdID: number;
 }
 
 export const MembersList: FC<MembersListProps> = ({ householdID }) => {
-  const { data, isLoading, isError } = useQuery(Queries.MEMBERS_LIST, () =>
-    memberService.getHouseholdMembers(householdID),
-  );
-
-  if (isLoading) {
-    return (
-      <Center>
-        <Spinner />
-      </Center>
-    );
-  }
-
-  if (isError || !data) {
-    return <Center>Podczas pobierania listy członków gospodarsta domowego wystąpił błąd.</Center>;
-  }
-
   return (
     <>
       <Text fontSize="2xl" marginBottom="8">
@@ -42,7 +24,7 @@ export const MembersList: FC<MembersListProps> = ({ householdID }) => {
           </Tr>
         </Thead>
         <Tbody>
-          {data.map((member) => (
+          {memberMocks.map((member) => (
             <MembersListItem key={member.id} member={member} householdID={householdID} />
           ))}
         </Tbody>
