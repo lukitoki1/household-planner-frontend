@@ -13,7 +13,6 @@ import {
   Tabs,
   Text,
 } from '@chakra-ui/react';
-import { HouseholdDTO } from '../../api/dto';
 import { BiEdit } from 'react-icons/all';
 import { replaceParam } from '../../helpers/url';
 import { ChoresList } from './ChoresList';
@@ -28,20 +27,15 @@ export const HouseholdDetails: FC = () => {
   const { householdID } = useParams<HouseholdDetailsParams>();
   const id = Number.parseInt(householdID);
 
-  const { data, isLoading, isError } = useQuery(Queries.HOUSEHOLD_DETAILS, () =>
+  const { data, isFetching, isError } = useQuery(Queries.HOUSEHOLD_DETAILS, () =>
     householdService.getHouseholdDetails(id),
   );
-
-  const household: HouseholdDTO = {
-    id,
-    name: 'Gospodarstwo Testowe',
-  };
 
   const redirectToHouseholdEditor = () => {
     history.push(replaceParam(routes.householdEditor, HOUSEHOLD_ID_PARAM, householdID));
   };
 
-  if (isLoading) {
+  if (isFetching) {
     return (
       <Center>
         <Spinner />
@@ -57,7 +51,7 @@ export const HouseholdDetails: FC = () => {
     <>
       <Flex justify="space-between" align="center">
         <Text fontSize="4xl" color="blue.600">
-          {household.name}
+          {data.name}
         </Text>
         <Button
           leftIcon={<BiEdit size="20px" />}
@@ -68,7 +62,7 @@ export const HouseholdDetails: FC = () => {
         </Button>
       </Flex>
       <Text paddingLeft="1" fontSize="md" color="gray.500" marginBottom="8">
-        Gospodarstwo #{household.id}
+        Gospodarstwo #{data.id}
       </Text>
       <Tabs>
         <TabList>
