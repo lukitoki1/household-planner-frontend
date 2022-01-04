@@ -2,7 +2,7 @@ import { Service, ServiceResponse } from './Service';
 import { AddMemberRequest, UserDTO } from '../dto';
 
 class MemberService extends Service {
-  deleteMember = (householdID: number, userID: number): ServiceResponse<void> =>
+  deleteMember = (householdID: number, userID: string): ServiceResponse<void> =>
     this.api.delete(`/members`, { params: { householdID, userID } });
 
   addMember = (payload: AddMemberRequest): ServiceResponse<void> =>

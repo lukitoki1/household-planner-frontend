@@ -2,13 +2,34 @@ import { FC } from 'react';
 import { Button, Menu, MenuButton, MenuItem, MenuList } from '@chakra-ui/react';
 import { BiChevronDown, BiChevronUp, BiUserCircle } from 'react-icons/all';
 import { useAuth } from '../../store/auth/authHooks';
+import FirebaseService from '../../api/services/FirebaseService';
+import { useAppToast } from '../Toast/useToast';
 
 export const NavBarUserMenu: FC = () => {
-  const { logUserOut } = useAuth();
-
-  const userName = 'Testowy Użytkownik';
+  const { user, logUserOut } = useAuth();
+  const { triggerToast } = useAppToast();
 
   const logout = () => {
+    FirebaseService.logout()
+      .then(() => {
+        logUserOut();
+
+        triggerToast({
+          title: 'Nastąpiło wylogowanie',
+          description: `Pomyślnie wylogowano użytkownika.`,
+          status: 'success',
+        });
+      })
+      .catch((reason) => {
+        console.error('User not logged in');
+        console.log(reason);
+
+        triggerToast({
+          title: 'Błąd wylogowania',
+          description: `Podczas wylogowywania wystąpił błąd. Spróbuj ponownie`,
+          status: 'error',
+        });
+      });
     logUserOut();
   };
 
@@ -23,7 +44,7 @@ export const NavBarUserMenu: FC = () => {
             variant="outline"
             padding="3"
           >
-            {userName}
+            {user?.name}
           </MenuButton>
           <MenuList>
             <MenuItem onClick={logout}>Wyloguj</MenuItem>

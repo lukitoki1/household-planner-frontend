@@ -6,7 +6,7 @@ export const choreMocks: ChoreDTO[] = [
     name: 'Mycie podłogi',
     description: 'Mycie podłogi mopem',
     user: {
-      id: 1,
+      id: '1',
       name: 'Arkadiusz Michalak',
       email: 'amichalak@op.pl',
     },
@@ -31,7 +31,7 @@ export const choreMocks: ChoreDTO[] = [
     name: 'Odkurzanie',
     description: 'Mycie podłogi mopem',
     user: {
-      id: 1,
+      id: '1',
       name: 'Arkadiusz Michalak',
       email: 'amichalak@op.pl',
     },
@@ -44,7 +44,7 @@ export const choreMocks: ChoreDTO[] = [
 ];
 
 export const memberMocks: UserDTO[] = [
-  { id: 1, name: 'Łukasz Kamiński', email: 'lukasz.kaminski@mail.com' },
-  { id: 2, name: 'Łukasz Kamiński', email: 'lukasz.kaminski@mail.com' },
-  { id: 3, name: 'Łukasz Kamiński', email: 'lukasz.kaminski@mail.com' },
+  { id: '1', name: 'Łukasz Kamiński', email: 'lukasz.kaminski@mail.com' },
+  { id: '2', name: 'Łukasz Kamiński', email: 'lukasz.kaminski@mail.com' },
+  { id: '3', name: 'Łukasz Kamiński', email: 'lukasz.kaminski@mail.com' },
 ];

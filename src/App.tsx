@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { NavBar } from './components/NavBar/NavBar';
 import { Container } from '@chakra-ui/react';
 import { Redirect, Route, Switch } from 'react-router';
@@ -9,9 +9,25 @@ import { HouseholdCreator } from './pages/HouseholdCreator/HouseholdCreator';
 import { HouseholdEditor } from './pages/HouseholdEditor/HouseholdEditor';
 import { useAuth } from './store/auth/authHooks';
 import { LogIn } from './pages/LogIn/LogIn';
+import FirebaseService from './api/services/FirebaseService';
 
 function App() {
-  const { isUserLoggedIn } = useAuth();
+  const { isUserLoggedIn, logUserIn, setAuthLoading } = useAuth();
+
+  useEffect(() => {
+    setAuthLoading(true);
+    FirebaseService.onAuthStateChanged()
+      .then((user) => {
+        logUserIn({ name: user.displayName, email: user.email, id: user.uid });
+      })
+      .catch((reason) => {
+        console.error('User not logged in');
+        console.log(reason);
+      })
+      .finally(() => {
+        setAuthLoading(false);
+      });
+  }, []);
 
   if (!isUserLoggedIn) {
     return (

@@ -1,16 +1,15 @@
 import { FC } from 'react';
 import { Box, Button, Flex, HStack, Text } from '@chakra-ui/react';
-import { useAuth } from '../../store/auth/authHooks';
-import { UserDTO } from '../../api/dto';
 import { BiCalendar } from 'react-icons/all';
+import FirebaseService from '../../api/services/FirebaseService';
+import { useAuth } from '../../store/auth/authHooks';
 
 export const LogIn: FC = () => {
-  const { logUserIn } = useAuth();
-
-  const mockUser: UserDTO = { id: 2, email: 'uzytkownik@wp.pl', name: 'Użytkownik Testowy' };
+  const { isAuthLoading, setAuthLoading } = useAuth();
 
   const logIn = () => {
-    logUserIn(mockUser);
+    setAuthLoading(true);
+    FirebaseService.loginWithGoogle();
   };
 
   return (
@@ -22,7 +21,7 @@ export const LogIn: FC = () => {
             Household Planner
           </Text>
         </HStack>
-        <Button width="full" onClick={logIn} size="lg">
+        <Button width="full" onClick={logIn} size="lg" isLoading={isAuthLoading}>
           Zaloguj się
         </Button>
       </Box>

@@ -1,5 +1,6 @@
 import axios, { AxiosError, AxiosInstance } from 'axios';
 import { useAppToast } from '../../components/Toast/useToast';
+import FirebaseService from './FirebaseService';
 
 export interface CreateAPIProps {
   baseURL?: string;
@@ -22,6 +23,27 @@ export class Service {
       timeout: 10000,
     });
 
+    instance.interceptors.request.use(
+      async (config) => {
+        const token = await FirebaseService.getToken();
+        config.headers = {
+          ...config.headers,
+          Authorization: `Bearer ${token}`,
+        };
+        return config;
+      },
+      (error) => {
+        console.log(error);
+
+        const { triggerToast } = useAppToast(true);
+        triggerToast({
+          title: 'Błąd uwierzytelniania',
+          description: 'Podczas komunikacji z serwerem uwierzytelniania wystąpił błąd.',
+          status: 'error',
+        });
+      },
+    );
+
     instance.interceptors.response.use(
       async (response) => {
         return response.data;
@@ -34,6 +56,8 @@ export class Service {
           description: 'Podczas komunikacji z serwerem API wystąpił błąd.',
           status: 'error',
         });
+
+        console.log(error);
 
         return Promise.reject(error.response);
       },

@@ -13,9 +13,9 @@ export interface HouseholdDTO {
 }
 
 export interface UserDTO {
-  id: number;
-  name: string;
-  email: string;
+  id: string;
+  name: string | null;
+  email: string | null;
 }
 
 export interface ChoreDTO {
@@ -27,6 +27,6 @@ export interface ChoreDTO {
   nextOccurrence: string;
 }
 
-export type GetHouseholdMembersResponse = UserDTO[]
+export type GetHouseholdMembersResponse = UserDTO[];
 
-export type GetHouseholdChoresResponse = ChoreDTO[]
+export type GetHouseholdChoresResponse = ChoreDTO[];
