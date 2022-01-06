@@ -2,11 +2,6 @@ export interface EditHouseholdRequest {
   name: string;
 }
 
-export interface AddMemberRequest {
-  householdID: number;
-  userEmail: string;
-}
-
 export interface HouseholdDTO {
   id: number;
   name: string;
@@ -27,7 +22,3 @@ export interface ChoreDTO {
   nextOccurrenceDate: string;
   intervalDays: number;
 }
-
-export type GetHouseholdMembersResponse = UserDTO[];
-
-export type GetHouseholdChoresResponse = ChoreDTO[];

@@ -1,15 +1,15 @@
 import { Service, ServiceResponse } from './Service';
-import { AddMemberRequest, UserDTO } from '../dto';
+import { UserDTO } from '../dto';
 
 class MemberService extends Service {
-  deleteMember = (householdID: number, userID: string): ServiceResponse<void> =>
-    this.api.delete(`/members`, { params: { householdID, userID } });
+  deleteHouseholdMember = (householdID: number, userID: string): ServiceResponse<void> =>
+    this.api.delete(`/households/${householdID}/members`, { params: { id: userID } });
 
-  addMember = (payload: AddMemberRequest): ServiceResponse<void> =>
-    this.api.post(`/members`, payload);
+  addHouseholdMember = (householdID: number, userEmail: string): ServiceResponse<void> =>
+    this.api.post(`/households/${householdID}/members`, { params: { email: userEmail } });
 
   getHouseholdMembers = (householdID: number): ServiceResponse<UserDTO[]> =>
-    this.api.get(`/members`, { params: { householdID } });
+    this.api.get(`/households/${householdID}/members`);
 }
 
 export const memberService = new MemberService();

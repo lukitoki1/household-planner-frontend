@@ -20,7 +20,7 @@ export const NewMember: FC<NewMemberProps> = ({ householdID }) => {
   const queryClient = useQueryClient();
 
   const mutation = useMutation((userEmail: string) =>
-    memberService.addMember({ householdID, userEmail }),
+    memberService.addHouseholdMember(householdID, userEmail),
   );
 
   const initialValues: NewMemberFormValues = {

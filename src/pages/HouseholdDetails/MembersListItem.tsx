@@ -14,7 +14,7 @@ export interface MembersListItemProps {
 }
 
 export const MembersListItem: FC<MembersListItemProps> = ({ member, householdID }) => {
-  const mutation = useMutation(() => memberService.deleteMember(householdID, member.id));
+  const mutation = useMutation(() => memberService.deleteHouseholdMember(householdID, member.id));
   const { triggerToast } = useAppToast();
 
   const deleteMember = async () => {
