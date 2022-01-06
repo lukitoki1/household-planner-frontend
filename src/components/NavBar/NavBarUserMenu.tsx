@@ -4,15 +4,23 @@ import { BiChevronDown, BiChevronUp, BiUserCircle } from 'react-icons/all';
 import { useAuth } from '../../store/auth/authHooks';
 import FirebaseService from '../../api/services/FirebaseService';
 import { useAppToast } from '../Toast/useToast';
+import { useHistory } from 'react-router';
+import { routes } from '../../routes';
 
 export const NavBarUserMenu: FC = () => {
-  const { user, logUserOut } = useAuth();
+  const history = useHistory();
+
+  const { user, clearUser } = useAuth();
   const { triggerToast } = useAppToast();
+
+  const editUser = () => {
+    history.push(routes.userEditor);
+  };
 
   const logout = () => {
     FirebaseService.logout()
       .then(() => {
-        logUserOut();
+        clearUser();
 
         triggerToast({
           title: 'Nastąpiło wylogowanie',
@@ -30,7 +38,7 @@ export const NavBarUserMenu: FC = () => {
           status: 'error',
         });
       });
-    logUserOut();
+    clearUser();
   };
 
   return (
@@ -46,6 +54,9 @@ export const NavBarUserMenu: FC = () => {
           >
             {user?.name}
           </MenuButton>
+          <MenuList>
+            <MenuItem onClick={editUser}>Edytuj konto</MenuItem>
+          </MenuList>
           <MenuList>
             <MenuItem onClick={logout}>Wyloguj</MenuItem>
           </MenuList>

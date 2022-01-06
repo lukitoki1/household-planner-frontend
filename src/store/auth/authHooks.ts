@@ -7,15 +7,15 @@ export const useAuth = () => {
 
   const user = state.user;
 
-  const isUserLoggedIn = !!state.user;
+  const isUserSet = !!state.user;
 
   const isAuthLoading = !!state.isLoading;
 
-  const logUserIn = (user: UserDTO) => {
+  const setUser = (user: UserDTO) => {
     dispatch((s) => ({ ...s, user }));
   };
 
-  const logUserOut = () => {
+  const clearUser = () => {
     dispatch((s) => ({ ...s, user: undefined }));
   };
 
@@ -23,5 +23,5 @@ export const useAuth = () => {
     dispatch((s) => ({ ...s, isLoading: loading }));
   };
 
-  return { state, user, isUserLoggedIn, isAuthLoading, logUserIn, logUserOut, setAuthLoading };
+  return { state, user, isUserSet, isAuthLoading, setUser, clearUser, setAuthLoading };
 };

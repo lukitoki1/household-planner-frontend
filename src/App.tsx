@@ -10,26 +10,41 @@ import { HouseholdEditor } from './pages/HouseholdEditor/HouseholdEditor';
 import { useAuth } from './store/auth/authHooks';
 import { LogIn } from './pages/LogIn/LogIn';
 import FirebaseService from './api/services/FirebaseService';
+import { UserEditor } from './pages/UserEditor/UserEditor';
+import { userService } from './api/services/UserService';
 
 function App() {
-  const { isUserLoggedIn, logUserIn, setAuthLoading } = useAuth();
+  const { isUserSet, setUser, setAuthLoading } = useAuth();
 
   useEffect(() => {
     setAuthLoading(true);
     FirebaseService.onAuthStateChanged()
-      .then((user) => {
-        logUserIn({ name: user.displayName, email: user.email, id: user.uid });
-      })
-      .catch((reason) => {
-        console.error('User not logged in');
-        console.log(reason);
-      })
+      .then(
+        (firebaseUser) => {
+          if (!firebaseUser.email) {
+            throw new Error('E-mail not provided by Google SSO');
+          }
+
+          userService.loginOrRegisterUser(firebaseUser.email).then(
+            (user) => {
+              setUser(user);
+            },
+            (reason) => {
+              console.log(reason);
+            },
+          );
+        },
+        (reason) => {
+          console.error('User not logged in');
+          console.log(reason);
+        },
+      )
       .finally(() => {
         setAuthLoading(false);
       });
   }, []);
 
-  if (!isUserLoggedIn) {
+  if (!isUserSet) {
     return (
       <Switch>
         <Route exact path={routes.login}>
@@ -45,6 +60,9 @@ function App() {
       <NavBar />
       <Container maxW="container.xl" marginTop="36" marginBottom="24">
         <Switch>
+          <Route exact path={routes.userEditor}>
+            <UserEditor />
+          </Route>
           <Route exact path={routes.householdsList}>
             <HouseholdsList />
           </Route>

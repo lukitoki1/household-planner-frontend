@@ -7,10 +7,15 @@ export interface HouseholdDTO {
   name: string;
 }
 
+export interface EditUserRequest {
+  name: string;
+  email: string;
+}
+
 export interface UserDTO {
-  id: string;
-  name: string | null;
-  email: string | null;
+  id: number;
+  name: string;
+  email: string;
 }
 
 export interface ChoreDTO {

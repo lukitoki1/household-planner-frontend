@@ -14,6 +14,8 @@ export const routes = {
 
   login: '/login',
 
+  userEditor: '/edit_user',
+
   householdsList: '/households',
   householdCreator: '/households/new',
   householdDetails: `/households/:${HOUSEHOLD_ID_PARAM}`,
