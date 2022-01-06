@@ -56,8 +56,6 @@ export const NavBarUserMenu: FC = () => {
           </MenuButton>
           <MenuList>
             <MenuItem onClick={editUser}>Edytuj konto</MenuItem>
-          </MenuList>
-          <MenuList>
             <MenuItem onClick={logout}>Wyloguj</MenuItem>
           </MenuList>
         </>
