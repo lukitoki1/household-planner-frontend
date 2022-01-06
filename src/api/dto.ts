@@ -26,4 +26,5 @@ export interface ChoreDTO {
   household: HouseholdDTO;
   nextOccurrenceDate: string;
   intervalDays: number;
+  language: string;
 }

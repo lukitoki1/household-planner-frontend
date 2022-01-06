@@ -15,11 +15,11 @@ import {
 } from '@chakra-ui/react';
 import { BiEdit } from 'react-icons/all';
 import { replaceParam } from '../../helpers/url';
-import { ChoresList } from './ChoresList';
-import { MembersList } from './MembersList';
 import { useQuery } from 'react-query';
 import { Queries } from '../../api/queries';
 import { householdService } from '../../api/services/HouseholdService';
+import { HouseholdMembers } from './HouseholdMembers';
+import { HouseholdChores } from './HouseholdChores';
 
 export const HouseholdDetails: FC = () => {
   const history = useHistory();
@@ -71,10 +71,10 @@ export const HouseholdDetails: FC = () => {
         </TabList>
         <TabPanels paddingTop="8">
           <TabPanel padding="0">
-            <ChoresList householdID={id} />
+            <HouseholdChores householdID={id} />
           </TabPanel>
           <TabPanel padding="0">
-            <MembersList householdID={id} />
+            <HouseholdMembers householdID={id} />
           </TabPanel>
         </TabPanels>
       </Tabs>
