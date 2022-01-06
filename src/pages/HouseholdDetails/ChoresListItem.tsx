@@ -50,7 +50,7 @@ export const ChoresListItem: FC<ChoresListItemProps> = ({ chore }) => {
           </Text>
         )}
       </Td>
-      <Td>{formatDateTime(new Date(chore.nextOccurrence))}</Td>
+      <Td>{formatDateTime(new Date(chore.nextOccurrenceDate))}</Td>
       <Td isNumeric>
         <HStack spacing="2" justify="right">
           <Button onClick={deleteChore}>{<BiTrash />}</Button>

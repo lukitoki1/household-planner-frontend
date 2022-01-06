@@ -24,7 +24,8 @@ export interface ChoreDTO {
   description: string;
   user?: UserDTO;
   household: HouseholdDTO;
-  nextOccurrence: string;
+  nextOccurrenceDate: string;
+  intervalDays: number;
 }
 
 export type GetHouseholdMembersResponse = UserDTO[];
