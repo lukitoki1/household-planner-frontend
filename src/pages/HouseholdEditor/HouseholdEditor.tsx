@@ -65,15 +65,13 @@ export const HouseholdEditor: FC = () => {
         status: 'success',
       });
       actions.setSubmitting(false);
-      history.push(routes.householdsList);
+      history.push(replaceParam(routes.householdDetails, HOUSEHOLD_ID_PARAM, householdID));
     } catch {}
   };
 
   return (
     <>
-      <Text fontSize="4xl" marginBottom="8">
-        Edytuj gospodarstwo domowe
-      </Text>
+      <Text fontSize="4xl">Edytuj gospodarstwo domowe</Text>
       <Text paddingLeft="1" fontSize="md" color="gray.500" marginBottom="8">
         Gospodarstwo #{householdID}
       </Text>
@@ -82,7 +80,7 @@ export const HouseholdEditor: FC = () => {
         validationSchema={householdFormValidationSchema}
         onSubmit={onSubmit}
       >
-        <HouseholdForm onCancel={onCancel} />
+        <HouseholdForm onCancel={onCancel} isEditing />
       </Formik>
     </>
   );

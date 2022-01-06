@@ -4,10 +4,11 @@ import { HouseholdFormFields, HouseholdFormValues } from './householdFormValues'
 import { Button, FormControl, FormErrorMessage, FormLabel, HStack, Input } from '@chakra-ui/react';
 
 export interface HouseholdFormProps {
+  isEditing?: boolean;
   onCancel: () => any;
 }
 
-export const HouseholdForm: FC<HouseholdFormProps> = ({ onCancel }) => {
+export const HouseholdForm: FC<HouseholdFormProps> = ({ onCancel, isEditing }) => {
   const { isSubmitting, errors } = useFormikContext<HouseholdFormValues>();
 
   return (
@@ -31,7 +32,7 @@ export const HouseholdForm: FC<HouseholdFormProps> = ({ onCancel }) => {
           Anuluj
         </Button>
         <Button type="submit" isLoading={isSubmitting} isDisabled={isSubmitting}>
-          Utwórz gospodarstwo
+          {isEditing ? 'Edytuj' : 'Utwórz'} gospodarstwo
         </Button>
       </HStack>
     </Form>

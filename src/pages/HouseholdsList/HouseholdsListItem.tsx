@@ -44,7 +44,9 @@ export const HouseholdsListItem: FC<HouseholdsListItemProps> = ({ household }) =
       <Td>{household.name}</Td>
       <Td isNumeric>
         <HStack spacing="2" justify="right">
-          <Button onClick={deleteHousehold}>{<BiTrash />}</Button>
+          <Button onClick={deleteHousehold} isLoading={mutation.isLoading}>
+            {<BiTrash />}
+          </Button>
           <Button rightIcon={<BiChevronRight />} onClick={redirectToHouseholdDetails}>
             Otwórz
           </Button>
