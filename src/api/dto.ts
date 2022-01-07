@@ -1,3 +1,5 @@
+import { Languages } from '../values';
+
 export interface EditHouseholdRequest {
   name: string;
 }
@@ -35,5 +37,5 @@ export interface ChoreDTO {
   startDate: string;
   nextOccurence: string;
   intervalDays: number;
-  language: string;
+  language: keyof Languages;
 }

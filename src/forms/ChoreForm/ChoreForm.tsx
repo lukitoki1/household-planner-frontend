@@ -16,7 +16,7 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import 'react-datepicker/dist/react-datepicker-cssmodules.css';
 import { ChoreFormFields, ChoreFormValues } from './choreFormValues';
-import { languages } from '../../values';
+import { languageTranslations } from '../../values';
 import { pl } from 'date-fns/locale';
 import { BiMinus, BiPlus } from 'react-icons/all';
 
@@ -28,7 +28,7 @@ export interface ChoreFormProps {
 export const ChoreForm: FC<ChoreFormProps> = ({ isEditing, onCancel }) => {
   const { errors, isSubmitting, values, setFieldValue } = useFormikContext<ChoreFormValues>();
 
-  const languageEntries = Object.entries(languages);
+  const languageEntries = Object.entries(languageTranslations);
 
   return (
     <Form>

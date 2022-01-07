@@ -6,7 +6,7 @@ import { ChoreCreatorRouterState, HOUSEHOLD_ID_PARAM, routes } from '../../route
 import { ChoreForm } from '../../forms/ChoreForm/ChoreForm';
 import { replaceParam } from '../../helpers/url';
 import { ChoreFormFields, ChoreFormValues } from '../../forms/ChoreForm/choreFormValues';
-import { languages } from '../../values';
+import { languageTranslations } from '../../values';
 import { useMutation } from 'react-query';
 import { choreService } from '../../api/services/ChoreService';
 import { EditChoreRequest } from '../../api/dto';
@@ -27,7 +27,7 @@ export const ChoreCreator: FC = () => {
   const initialValues: ChoreFormValues = {
     [ChoreFormFields.NAME]: '',
     [ChoreFormFields.DESCRIPTION]: '',
-    [ChoreFormFields.DESCRIPTION_LANGUAGE]: Object.keys(languages)[0],
+    [ChoreFormFields.DESCRIPTION_LANGUAGE]: Object.keys(languageTranslations)[0],
     [ChoreFormFields.START_DATE]: new Date(),
     [ChoreFormFields.INTERVAL]: 7,
   };

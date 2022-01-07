@@ -4,4 +4,5 @@ export enum Queries {
   HOUSEHOLD_MEMBERS_LIST = 'membersList',
   HOUSEHOLD_CHORES_LIST = 'choresList',
   CHORE_DETAILS = 'choreDetails',
+  CHORE_DESCRIPTION = 'choreDescription',
 }

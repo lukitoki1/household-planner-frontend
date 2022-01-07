@@ -76,7 +76,7 @@ export const ChoreDetails: FC = () => {
             <ChoreInfo chore={data} />
           </TabPanel>
           <TabPanel padding="0">
-            <ChoreDescription choreID={id} />
+            <ChoreDescription chore={data} />
           </TabPanel>
           <TabPanel padding="0">
             <ChorePhotos choreID={id} />

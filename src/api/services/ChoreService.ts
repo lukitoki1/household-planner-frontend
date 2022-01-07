@@ -10,6 +10,9 @@ class ChoreService extends Service {
 
   getChoreDetails = (id: number): ServiceResponse<ChoreDTO> => this.api.get(`/chores/${id}`);
 
+  getChoreDescription = (id: number, language: string): ServiceResponse<string> =>
+    this.api.get(`/chores/${id}/description`, { params: { language } });
+
   updateChore = (id: number, payload: EditChoreRequest): ServiceResponse<void> =>
     this.api.put(`/chores/${id}`, payload);
 
