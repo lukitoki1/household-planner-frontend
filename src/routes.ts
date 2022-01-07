@@ -9,6 +9,10 @@ export interface HouseholdEditorParams {
   [HOUSEHOLD_ID_PARAM]: string;
 }
 
+export interface ChoreCreatorRouterState {
+  [HOUSEHOLD_ID_PARAM]: string;
+}
+
 export const routes = {
   default: '/',
 

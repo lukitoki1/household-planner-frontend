@@ -18,13 +18,21 @@ export interface UserDTO {
   email: string;
 }
 
+export interface EditChoreRequest {
+  name: string;
+  description: string;
+  startDate: string;
+  intervalDays: number;
+  language: string;
+}
+
 export interface ChoreDTO {
   id: number;
   name: string;
   description: string;
   user?: UserDTO;
   household: HouseholdDTO;
-  nextOccurrenceDate: string;
+  nextOccurence: string;
   intervalDays: number;
   language: string;
 }

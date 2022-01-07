@@ -13,13 +13,13 @@ export const HouseholdChores: FC<HouseholdChoresProps> = ({ householdID }) => {
   const history = useHistory();
 
   const redirectToChoreCreator = () => {
-    history.push(routes.choreCreator);
+    history.push(routes.choreCreator, { householdID: householdID });
   };
 
   return (
     <>
       <Flex justify="space-between" align="center" marginBottom="8">
-        <Text fontSize="2xl">Nadchodzące obowiązki domowe</Text>
+        <Text fontSize="2xl">Obowiązki gospodarstwa domowego</Text>
         <Button
           leftIcon={<BiPlus size="20px" />}
           onClick={redirectToChoreCreator}

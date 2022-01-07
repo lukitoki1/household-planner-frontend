@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Button, Center, Flex, Spinner, Table, Tbody, Text, Th, Thead, Tr } from '@chakra-ui/react';
+import { Center, Spinner, Table, Tbody, Th, Thead, Tr } from '@chakra-ui/react';
 import { ChoresListItem } from './ChoresListItem';
 import { useQuery } from 'react-query';
 import { Queries } from '../../api/queries';
@@ -10,7 +10,7 @@ export interface ChoresListProps {
 }
 
 export const ChoresList: FC<ChoresListProps> = ({ householdID }) => {
-  const { data, isLoading, isError } = useQuery(Queries.CHORES_LIST, () =>
+  const { data, isLoading, isError } = useQuery([Queries.CHORES_LIST, householdID], () =>
     choreService.getHouseholdChores(householdID),
   );
 
@@ -24,6 +24,10 @@ export const ChoresList: FC<ChoresListProps> = ({ householdID }) => {
 
   if (isError || !data) {
     return <Center>Podczas pobierania listy obowiązków domowych wystąpił błąd.</Center>;
+  }
+
+  if (data.length === 0) {
+    return <Center>To gospodarstwo domowe nie posiada żadnych obowiązków.</Center>;
   }
 
   return (

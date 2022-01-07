@@ -1,11 +1,16 @@
 import { Service, ServiceResponse } from './Service';
-import { ChoreDTO } from '../dto';
+import { ChoreDTO, EditChoreRequest } from '../dto';
 
 class ChoreService extends Service {
-  deleteChore = (id: number): ServiceResponse<void> => this.api.delete(`/chores/${id}`);
-
   getHouseholdChores = (householdID: number): ServiceResponse<ChoreDTO[]> =>
-    this.api.get(`/chores`, { params: { householdID } });
+    this.api.get(`/households/${householdID}/chores`);
+
+  createHouseholdChore = (householdID: number, payload: EditChoreRequest): ServiceResponse<void> =>
+    this.api.post(`/households/${householdID}/chores`, payload);
+
+  getChoreDetails = (id: number): ServiceResponse<ChoreDTO> => this.api.get(`/chores/${id}`);
+
+  deleteChore = (id: number): ServiceResponse<void> => this.api.delete(`/chores/${id}`);
 }
 
 export const choreService = new ChoreService();

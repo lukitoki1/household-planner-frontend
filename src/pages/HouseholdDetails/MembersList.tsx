@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Center, Spinner, Table, Tbody, Text, Th, Thead, Tr } from '@chakra-ui/react';
+import { Center, Spinner, Table, Tbody, Th, Thead, Tr } from '@chakra-ui/react';
 import { MembersListItem } from './MembersListItem';
 import { useQuery } from 'react-query';
 import { Queries } from '../../api/queries';
@@ -10,7 +10,7 @@ export interface MembersListProps {
 }
 
 export const MembersList: FC<MembersListProps> = ({ householdID }) => {
-  const { data, isLoading, isError } = useQuery(Queries.MEMBERS_LIST, () =>
+  const { data, isLoading, isError } = useQuery([Queries.MEMBERS_LIST, householdID], () =>
     memberService.getHouseholdMembers(householdID),
   );
 
@@ -24,6 +24,10 @@ export const MembersList: FC<MembersListProps> = ({ householdID }) => {
 
   if (isError || !data) {
     return <Center>Podczas pobierania listy członków gospodarstwa domowego wystąpił błąd.</Center>;
+  }
+
+  if (data.length === 0) {
+    return <Center>To gospodarstwo domowe nie ma żadnych członków.</Center>;
   }
 
   return (

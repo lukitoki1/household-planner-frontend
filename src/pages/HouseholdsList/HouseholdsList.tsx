@@ -32,6 +32,10 @@ export const HouseholdsList: FC = () => {
     return <Center>Podczas pobierania listy gospodarstw domowych wystąpił błąd.</Center>;
   }
 
+  if (data.length === 0) {
+    return <Center>Nie jesteś członkiem żadnego gospodarstwa domowego.</Center>;
+  }
+
   return (
     <>
       <Flex justify="space-between" align="center" marginBottom="8">
