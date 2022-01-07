@@ -66,7 +66,7 @@ export const ChoreForm: FC<ChoreFormProps> = ({ isEditing, onCancel }) => {
           </FormControl>
         )}
       </Field>
-      <FormLabel>Data i godzina</FormLabel>
+      <FormLabel>Data rozpoczęcia i godzina występowania</FormLabel>
       <DatePicker
         selected={values[ChoreFormFields.START_DATE]}
         onChange={(date) => setFieldValue(ChoreFormFields.START_DATE, date || new Date())}
@@ -94,7 +94,7 @@ export const ChoreForm: FC<ChoreFormProps> = ({ isEditing, onCancel }) => {
             isInvalid={!!errors[ChoreFormFields.INTERVAL]}
             marginBottom="12"
           >
-            <FormLabel htmlFor={ChoreFormFields.INTERVAL}>Interwał (powtarzaj co...)</FormLabel>
+            <FormLabel htmlFor={ChoreFormFields.INTERVAL}>Interwał występowania</FormLabel>
             <HStack spacing="2">
               <Input id={ChoreFormFields.INTERVAL} type="number" {...props.field} maxWidth="32" />
               <IconButton

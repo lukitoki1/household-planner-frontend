@@ -28,7 +28,7 @@ export const ChoreInfo: FC<ChoreInfoProps> = ({ chore }) => {
         <ChoreInfoBox>
           <b>Harmonogram: </b>
           {chore.intervalDays === 1 ? 'Codziennie ' : `Co ${chore.intervalDays} dni `}
-          od {formatDateTime(new Date(chore.nextOccurence))}
+          od {formatDateTime(new Date(chore.startDate))}
         </ChoreInfoBox>
         <ChoreInfoBox>
           <b>Następne wystąpienie: </b>
