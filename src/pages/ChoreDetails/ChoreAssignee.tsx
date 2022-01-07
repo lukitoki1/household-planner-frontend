@@ -50,7 +50,12 @@ export const ChoreAssignee: FC<ChoreAssigneeProps> = ({ chore }) => {
             nie przypisano
           </Text>
         )}
-        <Button onClick={deleteAssignee} isLoading={mutation.isLoading} leftIcon={<BiX />}>
+        <Button
+          variant="ghost"
+          onClick={deleteAssignee}
+          isLoading={mutation.isLoading}
+          leftIcon={<BiX />}
+        >
           Usuń
         </Button>
       </HStack>
