@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { Text } from '@chakra-ui/react';
-import { NewMember } from './NewMember';
+import { AddMember } from './AddMember';
 import { MembersList } from './MembersList';
 
 export interface HouseholdMembersProps {
@@ -13,7 +13,7 @@ export const HouseholdMembers: FC<HouseholdMembersProps> = ({ householdID }) => 
       <Text fontSize="2xl" marginBottom="8">
         Członkowie gospodarstwa domowego
       </Text>
-      <NewMember householdID={householdID} />
+      <AddMember householdID={householdID} />
       <MembersList householdID={householdID} />
     </>
   );

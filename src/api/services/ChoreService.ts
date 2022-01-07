@@ -14,6 +14,12 @@ class ChoreService extends Service {
     this.api.put(`/chores/${id}`, payload);
 
   deleteChore = (id: number): ServiceResponse<void> => this.api.delete(`/chores/${id}`);
+
+  addAssignee = (choreID: number, userEmail: string): ServiceResponse<void> =>
+    this.api.post(`/chores/${choreID}/assignee`, undefined, { params: { email: userEmail } });
+
+  deleteAssignee = (choreID: number): ServiceResponse<void> =>
+    this.api.delete(`/chores/${choreID}/assignee`);
 }
 
 export const choreService = new ChoreService();

@@ -9,11 +9,11 @@ import {
   Input,
 } from '@chakra-ui/react';
 import { Field, FieldProps, Form, useFormikContext } from 'formik';
-import { NewMemberFormFields, NewMemberFormValues } from './newMemberFormValues';
+import { HouseholdMemberFormFields, HouseholdMemberFormValues } from './householdMemberFormValues';
 import { BiUserPlus } from 'react-icons/all';
 
-export const NewMemberForm: FC = () => {
-  const { isSubmitting, errors } = useFormikContext<NewMemberFormValues>();
+export const HouseholdMemberForm: FC = () => {
+  const { isSubmitting, errors } = useFormikContext<HouseholdMemberFormValues>();
 
   return (
     <Box
@@ -25,12 +25,14 @@ export const NewMemberForm: FC = () => {
       marginBottom="8"
     >
       <Form>
-        <Field name={NewMemberFormFields.EMAIL}>
+        <Field name={HouseholdMemberFormFields.EMAIL}>
           {(props: FieldProps<string>) => (
-            <FormControl isInvalid={!!errors[NewMemberFormFields.EMAIL]}>
-              <FormLabel htmlFor={NewMemberFormFields.EMAIL}>Adres e-mail użytkownika</FormLabel>
+            <FormControl isInvalid={!!errors[HouseholdMemberFormFields.EMAIL]}>
+              <FormLabel htmlFor={HouseholdMemberFormFields.EMAIL}>
+                Adres e-mail użytkownika
+              </FormLabel>
               <HStack>
-                <Input id={NewMemberFormFields.EMAIL} type="email" {...props.field} />
+                <Input id={HouseholdMemberFormFields.EMAIL} type="email" {...props.field} />
                 <Button
                   type="submit"
                   isLoading={isSubmitting}
@@ -40,7 +42,7 @@ export const NewMemberForm: FC = () => {
                   Dodaj
                 </Button>
               </HStack>
-              <FormErrorMessage>{errors[NewMemberFormFields.EMAIL]}</FormErrorMessage>
+              <FormErrorMessage>{errors[HouseholdMemberFormFields.EMAIL]}</FormErrorMessage>
             </FormControl>
           )}
         </Field>

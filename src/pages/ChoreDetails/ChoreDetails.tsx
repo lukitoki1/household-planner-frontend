@@ -73,7 +73,7 @@ export const ChoreDetails: FC = () => {
         </TabList>
         <TabPanels paddingTop="8">
           <TabPanel padding="0">
-            <ChoreInfo choreID={id} />
+            <ChoreInfo chore={data} />
           </TabPanel>
           <TabPanel padding="0">
             <ChoreDescription choreID={id} />

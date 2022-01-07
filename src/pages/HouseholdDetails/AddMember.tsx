@@ -1,11 +1,11 @@
 import { FC } from 'react';
-import { NewMemberForm } from '../../forms/NewMemberForm/NewMemberForm';
+import { HouseholdMemberForm } from '../../forms/HouseholdMemberForm/HouseholdMemberForm';
 import { Formik, FormikHelpers } from 'formik';
 import {
-  NewMemberFormFields,
-  NewMemberFormValues,
-} from '../../forms/NewMemberForm/newMemberFormValues';
-import { newMemberFormValidationSchema } from '../../forms/NewMemberForm/newMemberFormValidation';
+  HouseholdMemberFormFields,
+  HouseholdMemberFormValues,
+} from '../../forms/HouseholdMemberForm/householdMemberFormValues';
+import { householdMemberFormValidationSchema } from '../../forms/HouseholdMemberForm/householdMemberFormValidation';
 import { useMutation, useQueryClient } from 'react-query';
 import { memberService } from '../../api/services/MemberService';
 import { useAppToast } from '../../components/Toast/useToast';
@@ -15,7 +15,7 @@ export interface NewMemberProps {
   householdID: number;
 }
 
-export const NewMember: FC<NewMemberProps> = ({ householdID }) => {
+export const AddMember: FC<NewMemberProps> = ({ householdID }) => {
   const { triggerToast } = useAppToast();
   const queryClient = useQueryClient();
 
@@ -23,16 +23,16 @@ export const NewMember: FC<NewMemberProps> = ({ householdID }) => {
     memberService.addHouseholdMember(householdID, userEmail),
   );
 
-  const initialValues: NewMemberFormValues = {
-    [NewMemberFormFields.EMAIL]: '',
+  const initialValues: HouseholdMemberFormValues = {
+    [HouseholdMemberFormFields.EMAIL]: '',
   };
 
   const onSubmit = async (
-    values: NewMemberFormValues,
-    actions: FormikHelpers<NewMemberFormValues>,
+    values: HouseholdMemberFormValues,
+    actions: FormikHelpers<HouseholdMemberFormValues>,
   ) => {
     try {
-      await mutation.mutateAsync(values[NewMemberFormFields.EMAIL]);
+      await mutation.mutateAsync(values[HouseholdMemberFormFields.EMAIL]);
       triggerToast({
         title: 'Dodano członka gospodarstwa domowego',
         description: `Pomyślnie dodano użytkownika do gospodarstwa domowego.`,
@@ -46,10 +46,10 @@ export const NewMember: FC<NewMemberProps> = ({ householdID }) => {
   return (
     <Formik
       initialValues={initialValues}
-      validationSchema={newMemberFormValidationSchema}
+      validationSchema={householdMemberFormValidationSchema}
       onSubmit={onSubmit}
     >
-      <NewMemberForm />
+      <HouseholdMemberForm />
     </Formik>
   );
 };
