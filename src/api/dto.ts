@@ -39,3 +39,8 @@ export interface ChoreDTO {
   intervalDays: number;
   language: keyof Languages;
 }
+
+export interface ChorePhotoDTO {
+  name: string;
+  url: string;
+}

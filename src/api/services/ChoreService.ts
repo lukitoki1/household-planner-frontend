@@ -1,5 +1,5 @@
 import { Service, ServiceResponse } from './Service';
-import { ChoreDTO, EditChoreRequest } from '../dto';
+import { ChoreDTO, ChorePhotoDTO, EditChoreRequest } from '../dto';
 
 class ChoreService extends Service {
   getHouseholdChores = (householdID: number): ServiceResponse<ChoreDTO[]> =>
@@ -23,6 +23,19 @@ class ChoreService extends Service {
 
   deleteAssignee = (choreID: number): ServiceResponse<void> =>
     this.api.delete(`/chores/${choreID}/assignee`);
+
+  getPhotos = (choreID: number): ServiceResponse<ChorePhotoDTO[]> =>
+    this.api.get(`/chores/${choreID}/photos`);
+
+  getPhoto = (choreID: number, photoName: string): ServiceResponse<ChorePhotoDTO> =>
+    this.api.get(`/chores/${choreID}/photos/${photoName}`);
+
+  addPhoto = (choreID: number, payload: FormData): ServiceResponse<void> =>
+    this.api.post(`/chores/${choreID}/photos`, payload, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
 }
 
 export const choreService = new ChoreService();
