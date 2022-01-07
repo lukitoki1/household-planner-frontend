@@ -29,7 +29,7 @@ export const ChorePhotosGrid: FC<ChorePhotosGridProps> = ({ choreID }) => {
     return <Center>Podczas pobierania zdjęć obowiązku domowego wystąpił błąd.</Center>;
   }
 
-  if(data.length === 0) {
+  if (data.length === 0) {
     return <Center>Ten obowiązek domowy nie posiada zdjęć w galerii.</Center>;
   }
 

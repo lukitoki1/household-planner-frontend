@@ -50,6 +50,9 @@ export const ChoreInfo: FC<ChoreInfoProps> = ({ chore }) => {
         </ChoreInfoBox>
       </Wrap>
       <Divider marginBottom="8" />
+      <Text fontSize="2xl" marginBottom="8">
+        Informacje o wykonawcy
+      </Text>
       <Wrap>
         <ChoreAssignee chore={chore} />
       </Wrap>
