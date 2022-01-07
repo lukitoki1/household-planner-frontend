@@ -9,6 +9,14 @@ export interface HouseholdEditorParams {
   [HOUSEHOLD_ID_PARAM]: string;
 }
 
+export interface ChoreDetailsParams {
+  [CHORE_ID_PARAM]: string;
+}
+
+export interface ChoreEditorParams {
+  [CHORE_ID_PARAM]: string;
+}
+
 export interface ChoreCreatorRouterState {
   [HOUSEHOLD_ID_PARAM]: string;
 }
@@ -25,6 +33,7 @@ export const routes = {
   householdDetails: `/households/:${HOUSEHOLD_ID_PARAM}`,
   householdEditor: `/households/:${HOUSEHOLD_ID_PARAM}/edit`,
 
-  choreDetails: `/chores/:${CHORE_ID_PARAM}`,
   choreCreator: '/chores/new',
+  choreDetails: `/chores/:${CHORE_ID_PARAM}`,
+  choreEditor: `/chores/:${CHORE_ID_PARAM}/edit`,
 };

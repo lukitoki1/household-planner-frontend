@@ -30,7 +30,7 @@ export const ChoresListItem: FC<ChoresListItemProps> = ({ chore }) => {
         description: `Pomyślnie usunięto obowiązek domowy "${chore.name}"`,
         status: 'success',
       });
-      await queryClient.invalidateQueries(Queries.CHORES_LIST);
+      await queryClient.invalidateQueries(Queries.HOUSEHOLD_CHORES_LIST);
     } catch {}
   };
 

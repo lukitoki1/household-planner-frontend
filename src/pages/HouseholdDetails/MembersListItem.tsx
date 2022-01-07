@@ -25,7 +25,7 @@ export const MembersListItem: FC<MembersListItemProps> = ({ member, householdID 
         description: `Pomyślnie usunięto członka gospodarstwa domowego: "${member.name}"`,
         status: 'success',
       });
-      await queryClient.invalidateQueries(Queries.MEMBERS_LIST);
+      await queryClient.invalidateQueries(Queries.HOUSEHOLD_MEMBERS_LIST);
     } catch {}
   };
 

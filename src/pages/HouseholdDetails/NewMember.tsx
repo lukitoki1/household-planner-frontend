@@ -39,7 +39,7 @@ export const NewMember: FC<NewMemberProps> = ({ householdID }) => {
         status: 'success',
       });
       actions.setSubmitting(false);
-      queryClient.invalidateQueries(Queries.MEMBERS_LIST);
+      queryClient.invalidateQueries(Queries.HOUSEHOLD_MEMBERS_LIST);
     } catch {}
   };
 

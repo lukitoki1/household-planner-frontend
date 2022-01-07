@@ -1,6 +1,7 @@
 export enum Queries {
   HOUSEHOLDS_LIST = 'householdsList',
   HOUSEHOLD_DETAILS = 'householdDetails',
-  CHORES_LIST = 'choresList',
-  MEMBERS_LIST = 'membersList',
+  HOUSEHOLD_MEMBERS_LIST = 'membersList',
+  HOUSEHOLD_CHORES_LIST = 'choresList',
+  CHORE_DETAILS = 'choreDetails',
 }

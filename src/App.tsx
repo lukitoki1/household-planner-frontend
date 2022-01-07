@@ -13,6 +13,8 @@ import FirebaseService from './api/services/FirebaseService';
 import { UserEditor } from './pages/UserEditor/UserEditor';
 import { userService } from './api/services/UserService';
 import { ChoreCreator } from './pages/ChoreCreator/ChoreCreator';
+import { ChoreDetails } from './pages/ChoreDetails/ChoreDetails';
+import { ChoreEditor } from './pages/ChoreEditor/ChoreEditor';
 
 function App() {
   const { isUserSet, setUser, setAuthLoading } = useAuth();
@@ -78,6 +80,12 @@ function App() {
           </Route>
           <Route exact path={routes.choreCreator}>
             <ChoreCreator />
+          </Route>
+          <Route exact path={routes.choreDetails}>
+            <ChoreDetails />
+          </Route>
+          <Route exact path={routes.choreEditor}>
+            <ChoreEditor />
           </Route>
           <Redirect to={routes.householdsList} />
         </Switch>

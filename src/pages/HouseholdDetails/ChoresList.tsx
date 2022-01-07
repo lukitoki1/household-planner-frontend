@@ -10,7 +10,7 @@ export interface ChoresListProps {
 }
 
 export const ChoresList: FC<ChoresListProps> = ({ householdID }) => {
-  const { data, isLoading, isError } = useQuery([Queries.CHORES_LIST, householdID], () =>
+  const { data, isLoading, isError } = useQuery([Queries.HOUSEHOLD_CHORES_LIST, householdID], () =>
     choreService.getHouseholdChores(householdID),
   );
 

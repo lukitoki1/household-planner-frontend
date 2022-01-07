@@ -10,7 +10,7 @@ export interface MembersListProps {
 }
 
 export const MembersList: FC<MembersListProps> = ({ householdID }) => {
-  const { data, isLoading, isError } = useQuery([Queries.MEMBERS_LIST, householdID], () =>
+  const { data, isLoading, isError } = useQuery([Queries.HOUSEHOLD_MEMBERS_LIST, householdID], () =>
     memberService.getHouseholdMembers(householdID),
   );
 
