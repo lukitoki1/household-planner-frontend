@@ -57,7 +57,7 @@ export const ChorePhotosGrid: FC<ChorePhotosGridProps> = ({ choreID }) => {
             borderColor="gray.300"
             borderWidth="1px"
             width="100%"
-            height="100%"
+            height="200px"
             padding="0"
             onClick={() => openPhotoPreview(photo.name)}
           >

@@ -36,6 +36,9 @@ class ChoreService extends Service {
         'Content-Type': 'multipart/form-data',
       },
     });
+
+  deletePhoto = (choreID: number, photoName: string): ServiceResponse<ChorePhotoDTO> =>
+    this.api.delete(`/chores/${choreID}/photos/${photoName}`);
 }
 
 export const choreService = new ChoreService();
