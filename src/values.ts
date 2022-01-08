@@ -1,5 +1,7 @@
 export const EMAIL_MAX = 100;
 
+export const HTTP_NOT_FOUND_STATUS = 404;
+
 export type Languages = {
   pl: string;
   en: string;

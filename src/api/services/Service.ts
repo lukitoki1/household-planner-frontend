@@ -1,6 +1,7 @@
 import axios, { AxiosError, AxiosInstance } from 'axios';
 import { useAppToast } from '../../components/Toast/useToast';
 import FirebaseService from './FirebaseService';
+import { HTTP_NOT_FOUND_STATUS } from '../../values';
 
 export interface CreateAPIProps {
   baseURL?: string;
@@ -51,11 +52,19 @@ export class Service {
       (error: AxiosError) => {
         const { triggerToast } = useAppToast(true);
 
-        triggerToast({
-          title: 'Błąd połączenia z serwerem',
-          description: 'Podczas komunikacji z serwerem API wystąpił błąd.',
-          status: 'error',
-        });
+        if (error.response?.status === HTTP_NOT_FOUND_STATUS) {
+          triggerToast({
+            title: 'Żądany zasób nie istnieje',
+            description: 'Żądany zasób (np. użytkownik) nie istnieje w serwisie.',
+            status: 'warning',
+          });
+        } else {
+          triggerToast({
+            title: 'Błąd połączenia z serwerem',
+            description: 'Podczas komunikacji z serwerem API wystąpił błąd.',
+            status: 'error',
+          });
+        }
 
         console.log(error);
 
