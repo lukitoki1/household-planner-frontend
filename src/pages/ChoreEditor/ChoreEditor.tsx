@@ -82,7 +82,7 @@ export const ChoreEditor: FC = () => {
         validationSchema={choreFormValidationSchema}
         onSubmit={onSubmit}
       >
-        <ChoreForm onCancel={onCancel} />
+        <ChoreForm onCancel={onCancel} isEditing />
       </Formik>
     </>
   );

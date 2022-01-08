@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { UserFormValues } from '../../forms/UserForm/userFormValues';
+import { UserFormFields, UserFormValues } from '../../forms/UserForm/userFormValues';
 import { useAuth } from '../../store/auth/authHooks';
 import { Formik, FormikHelpers } from 'formik';
 import { useHistory } from 'react-router';
@@ -31,7 +31,7 @@ export const UserEditor: FC = () => {
 
   const onSubmit = async (values: UserFormValues, actions: FormikHelpers<UserFormValues>) => {
     try {
-      await userService.updateUser(user.id, values);
+      await userService.updateUser(user.id, { name: values[UserFormFields.NAME] });
       setUser({ ...user, ...values });
 
       triggerToast({

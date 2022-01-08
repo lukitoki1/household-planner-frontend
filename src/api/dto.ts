@@ -11,13 +11,13 @@ export interface HouseholdDTO {
 
 export interface EditUserRequest {
   name: string;
-  email: string;
 }
 
 export interface UserDTO {
   id: number;
   name: string;
   email: string;
+
 }
 
 export interface EditChoreRequest {

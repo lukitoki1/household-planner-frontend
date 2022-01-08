@@ -1,7 +1,6 @@
 import { FC } from 'react';
 import { Field, FieldProps, Form, useFormikContext } from 'formik';
 import {
-  Box,
   Button,
   FormControl,
   FormErrorMessage,
@@ -31,7 +30,7 @@ export const UserForm: FC<UserFormProps> = ({ onCancel }) => {
       </Field>
       <Field name={UserFormFields.EMAIL}>
         {(props: FieldProps<string>) => (
-          <FormControl isInvalid={!!errors[UserFormFields.EMAIL]} height="28">
+          <FormControl isInvalid={!!errors[UserFormFields.EMAIL]} height="28" isDisabled>
             <FormLabel htmlFor={UserFormFields.EMAIL}>Adres e-mail</FormLabel>
             <Input id={UserFormFields.EMAIL} type="email" {...props.field} />
             <FormErrorMessage>{errors[UserFormFields.EMAIL]}</FormErrorMessage>
