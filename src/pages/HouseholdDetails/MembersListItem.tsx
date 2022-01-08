@@ -8,6 +8,9 @@ import { Queries } from '../../api/queries';
 import { useAppToast } from '../../components/Toast/useToast';
 import { memberService } from '../../api/services/MemberService';
 import { UserDisplay } from '../../components/UserDisplay/UserDisplay';
+import { useAuth } from '../../store/auth/authHooks';
+import { useHistory } from 'react-router';
+import { routes } from '../../routes';
 
 export interface MembersListItemProps {
   member: UserDTO;
@@ -15,8 +18,13 @@ export interface MembersListItemProps {
 }
 
 export const MembersListItem: FC<MembersListItemProps> = ({ member, householdID }) => {
-  const mutation = useMutation(() => memberService.deleteHouseholdMember(householdID, member.id));
   const { triggerToast } = useAppToast();
+  const { user } = useAuth();
+  const history = useHistory();
+
+  const mutation = useMutation(() => memberService.deleteHouseholdMember(householdID, member.id));
+
+  const isCurrentUser = user?.id === member.id;
 
   const deleteMember = async () => {
     try {
@@ -26,7 +34,11 @@ export const MembersListItem: FC<MembersListItemProps> = ({ member, householdID 
         description: `Pomyślnie usunięto członka gospodarstwa domowego: "${member.name}"`,
         status: 'success',
       });
-      await queryClient.invalidateQueries(Queries.HOUSEHOLD_MEMBERS_LIST);
+      if (isCurrentUser) {
+        history.push(routes.householdsList);
+      } else {
+        await queryClient.invalidateQueries(Queries.HOUSEHOLD_MEMBERS_LIST);
+      }
     } catch {}
   };
 
