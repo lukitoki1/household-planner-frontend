@@ -4,14 +4,17 @@ import { ChoresListItem } from './ChoresListItem';
 import { useQuery } from 'react-query';
 import { Queries } from '../../api/queries';
 import { choreService } from '../../api/services/ChoreService';
+import { ChoreFilterParams } from '../../api/dto';
 
 export interface ChoresListProps {
   householdID: number;
+  filters: ChoreFilterParams;
 }
 
-export const ChoresList: FC<ChoresListProps> = ({ householdID }) => {
-  const { data, isLoading, isError } = useQuery([Queries.HOUSEHOLD_CHORES_LIST, householdID], () =>
-    choreService.getHouseholdChores(householdID),
+export const ChoresList: FC<ChoresListProps> = ({ householdID, filters }) => {
+  const { data, isLoading, isError } = useQuery(
+    [Queries.HOUSEHOLD_CHORES_LIST, householdID, filters],
+    () => choreService.getHouseholdChores(householdID, filters),
   );
 
   if (isLoading) {
@@ -27,7 +30,12 @@ export const ChoresList: FC<ChoresListProps> = ({ householdID }) => {
   }
 
   if (data.length === 0) {
-    return <Center>To gospodarstwo domowe nie posiada żadnych obowiązków.</Center>;
+    return (
+      <Center>
+        To gospodarstwo domowe nie posiada żadnych obowiązków lub żadne wyniki nie spełniają
+        kryteriów filtrowania.
+      </Center>
+    );
   }
 
   return (
@@ -36,7 +44,8 @@ export const ChoresList: FC<ChoresListProps> = ({ householdID }) => {
         <Tr>
           <Th>Nazwa</Th>
           <Th>Wykonawca</Th>
-          <Th>Data następnego wykonania</Th>
+          <Th>Następne wystąpienie</Th>
+          <Th>Interwał</Th>
           <Th isNumeric>Operacje</Th>
         </Tr>
       </Thead>

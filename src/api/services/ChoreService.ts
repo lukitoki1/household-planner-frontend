@@ -1,9 +1,12 @@
 import { Service, ServiceResponse } from './Service';
-import { ChoreDTO, ChorePhotoDTO, EditChoreRequest } from '../dto';
+import { ChoreDTO, ChoreFilterParams, ChorePhotoDTO, EditChoreRequest } from '../dto';
 
 class ChoreService extends Service {
-  getHouseholdChores = (householdID: number): ServiceResponse<ChoreDTO[]> =>
-    this.api.get(`/households/${householdID}/chores`);
+  getHouseholdChores = (
+    householdID: number,
+    params?: ChoreFilterParams,
+  ): ServiceResponse<ChoreDTO[]> =>
+    this.api.get(`/households/${householdID}/chores`, { params: params });
 
   createHouseholdChore = (householdID: number, payload: EditChoreRequest): ServiceResponse<void> =>
     this.api.post(`/households/${householdID}/chores`, payload);

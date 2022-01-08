@@ -1,8 +1,6 @@
 import * as yup from 'yup';
 import { ChoreFormFields } from './choreFormValues';
-
-const CHORE_NAME_MAX = 100;
-const CHORE_DESCRIPTION_MAX = 3000;
+import { CHORE_DESCRIPTION_MAX, CHORE_NAME_MAX } from '../../values';
 
 export const choreFormValidationSchema = yup.object().shape({
   [ChoreFormFields.NAME]: yup

@@ -17,7 +17,11 @@ export interface UserDTO {
   id: number;
   name: string;
   email: string;
+}
 
+export interface ChoreFilterParams {
+  name?: string;
+  interval?: number;
 }
 
 export interface EditChoreRequest {
