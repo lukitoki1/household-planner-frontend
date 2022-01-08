@@ -1,6 +1,6 @@
 import { FC, useState } from 'react';
 import { ChoreDTO } from '../../api/dto';
-import { Center, Flex, HStack, Select, Spinner, Text } from '@chakra-ui/react';
+import { Box, Center, Flex, HStack, Select, Spinner, Text } from '@chakra-ui/react';
 import { languageTranslations } from '../../values';
 import { useQuery } from 'react-query';
 import { Queries } from '../../api/queries';
@@ -38,7 +38,7 @@ export const ChoreDescription: FC<ChoreDescriptionProps> = ({ chore }) => {
   }
 
   return (
-    <>
+    <Box width="full">
       <Flex justify="space-between" align="center">
         <Text fontSize="2xl" marginBottom="8">
           Opis obowiązku
@@ -61,6 +61,6 @@ export const ChoreDescription: FC<ChoreDescriptionProps> = ({ chore }) => {
         </HStack>
       </Flex>
       {description}
-    </>
+    </Box>
   );
 };

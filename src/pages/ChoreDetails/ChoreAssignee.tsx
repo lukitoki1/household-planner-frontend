@@ -32,12 +32,12 @@ export const ChoreAssignee: FC<ChoreAssigneeProps> = ({ chore }) => {
 
   return (
     <Box
-      width="auto"
       borderRadius="8px"
       borderColor="gray.300"
       borderWidth="1px"
       padding="4"
       marginBottom="8"
+      minWidth="460px"
     >
       <HStack marginBottom="4">
         <b>Wykonawca: </b>

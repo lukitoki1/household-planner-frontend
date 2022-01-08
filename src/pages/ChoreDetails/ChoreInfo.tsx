@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Box, Divider, Link, Text, Wrap } from '@chakra-ui/react';
+import { Box, Link, Text, VStack } from '@chakra-ui/react';
 import { formatDateTime } from '../../helpers/time';
 import { ChoreDTO } from '../../api/dto';
 import { Link as ReactLink } from 'react-router-dom';
@@ -12,28 +12,18 @@ export interface ChoreInfoProps {
 }
 
 export const ChoreInfoBox: FC = ({ children }) => (
-  <Box borderRadius="8px" borderColor="gray.300" borderWidth="1px" padding="4">
+  <Box borderRadius="8px" borderColor="gray.300" borderWidth="1px" padding="4" width="full">
     {children}
   </Box>
 );
 
-//TODO: replace nextOccurence with startDate
 export const ChoreInfo: FC<ChoreInfoProps> = ({ chore }) => {
   return (
-    <>
+    <Box>
       <Text fontSize="2xl" marginBottom="8">
         Podstawowe informacje
       </Text>
-      <Wrap marginBottom="8">
-        <ChoreInfoBox>
-          <b>Harmonogram: </b>
-          {chore.intervalDays === 1 ? 'Codziennie ' : `Co ${chore.intervalDays} dni `}
-          od {formatDateTime(new Date(chore.startDate))}
-        </ChoreInfoBox>
-        <ChoreInfoBox>
-          <b>Następne wystąpienie: </b>
-          {formatDateTime(new Date(chore.nextOccurence))}
-        </ChoreInfoBox>
+      <VStack spacing="4">
         <ChoreInfoBox>
           <b>Gospodarstwo domowe: </b>
           <Link
@@ -48,14 +38,17 @@ export const ChoreInfo: FC<ChoreInfoProps> = ({ chore }) => {
             {chore.household.name}
           </Link>
         </ChoreInfoBox>
-      </Wrap>
-      <Divider marginBottom="8" />
-      <Text fontSize="2xl" marginBottom="8">
-        Informacje o wykonawcy
-      </Text>
-      <Wrap>
+        <ChoreInfoBox>
+          <b>Harmonogram: </b>
+          {chore.intervalDays === 1 ? 'Codziennie ' : `Co ${chore.intervalDays} dni `}
+          od {formatDateTime(new Date(chore.startDate))}
+        </ChoreInfoBox>
+        <ChoreInfoBox>
+          <b>Następne wystąpienie: </b>
+          {formatDateTime(new Date(chore.nextOccurence))}
+        </ChoreInfoBox>
         <ChoreAssignee chore={chore} />
-      </Wrap>
-    </>
+      </VStack>
+    </Box>
   );
 };

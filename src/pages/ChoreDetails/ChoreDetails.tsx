@@ -2,7 +2,9 @@ import { FC } from 'react';
 import {
   Button,
   Center,
+  Divider,
   Flex,
+  HStack,
   Spinner,
   Tab,
   TabList,
@@ -68,15 +70,15 @@ export const ChoreDetails: FC = () => {
       <Tabs>
         <TabList>
           <Tab>Informacje</Tab>
-          <Tab>Opis</Tab>
           <Tab>Zdjęcia</Tab>
         </TabList>
         <TabPanels paddingTop="8">
           <TabPanel padding="0">
-            <ChoreInfo chore={data} />
-          </TabPanel>
-          <TabPanel padding="0">
-            <ChoreDescription chore={data} />
+            <HStack alignItems="start" spacing="4">
+              <ChoreDescription chore={data} />
+              <Divider height="500px" orientation="vertical" />
+              <ChoreInfo chore={data} />
+            </HStack>
           </TabPanel>
           <TabPanel padding="0">
             <ChorePhotos choreID={id} />
