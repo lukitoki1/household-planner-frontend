@@ -17,6 +17,7 @@ export interface UserDTO {
   id: number;
   name: string;
   email: string;
+  isOwner?: boolean;
 }
 
 export interface ChoreFilterParams {

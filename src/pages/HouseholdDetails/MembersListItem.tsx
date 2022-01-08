@@ -38,7 +38,7 @@ export const MembersListItem: FC<MembersListItemProps> = ({ member, householdID 
       <Td>{member.email}</Td>
       <Td isNumeric>
         <HStack spacing="2" justify="right">
-          <Button onClick={deleteMember} leftIcon={<BiUserX />}>
+          <Button onClick={deleteMember} leftIcon={<BiUserX />} isDisabled={member.isOwner}>
             Usuń
           </Button>
         </HStack>
