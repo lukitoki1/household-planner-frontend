@@ -39,6 +39,7 @@ export const AddMember: FC<NewMemberProps> = ({ householdID }) => {
         status: 'success',
       });
       actions.setSubmitting(false);
+      actions.resetForm();
       queryClient.invalidateQueries(Queries.HOUSEHOLD_MEMBERS_LIST);
     } catch {}
   };

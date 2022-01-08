@@ -37,6 +37,7 @@ export const AddAssignee: FC<AddAssigneeProps> = ({ choreID }) => {
         status: 'success',
       });
       actions.setSubmitting(false);
+      actions.resetForm();
       queryClient.invalidateQueries(Queries.CHORE_DETAILS);
     } catch {}
   };
