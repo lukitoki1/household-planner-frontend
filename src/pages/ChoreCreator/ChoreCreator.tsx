@@ -51,7 +51,7 @@ export const ChoreCreator: FC = () => {
         status: 'success',
       });
       actions.setSubmitting(false);
-      history.push(routes.householdsList);
+      history.push(replaceParam(routes.householdDetails, HOUSEHOLD_ID_PARAM, householdID));
     } catch {}
   };
 
