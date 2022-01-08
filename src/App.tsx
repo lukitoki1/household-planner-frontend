@@ -21,30 +21,32 @@ function App() {
 
   useEffect(() => {
     setAuthLoading(true);
-    FirebaseService.onAuthStateChanged()
-      .then(
-        (firebaseUser) => {
-          if (!firebaseUser.email) {
-            throw new Error('E-mail not provided by Google SSO');
-          }
+    FirebaseService.onAuthStateChanged().then(
+      (firebaseUser) => {
+        if (!firebaseUser.email) {
+          throw new Error('E-mail not provided by Google SSO');
+        }
 
-          userService.loginOrRegisterUser(firebaseUser.email).then(
+        userService
+          .loginOrRegisterUser(firebaseUser.email)
+          .then(
             (user) => {
               setUser(user);
             },
             (reason) => {
               console.log(reason);
             },
-          );
-        },
-        (reason) => {
-          console.error('User not logged in');
-          console.log(reason);
-        },
-      )
-      .finally(() => {
+          )
+          .finally(() => {
+            setAuthLoading(false);
+          });
+      },
+      (reason) => {
+        console.error('User not logged in');
+        console.log(reason);
         setAuthLoading(false);
-      });
+      },
+    );
   }, []);
 
   if (!isUserSet) {
