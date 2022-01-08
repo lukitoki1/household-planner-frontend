@@ -7,6 +7,7 @@ import { queryClient } from '../../api/queryClient';
 import { Queries } from '../../api/queries';
 import { useAppToast } from '../../components/Toast/useToast';
 import { memberService } from '../../api/services/MemberService';
+import { UserDisplay } from '../../components/UserDisplay/UserDisplay';
 
 export interface MembersListItemProps {
   member: UserDTO;
@@ -31,7 +32,9 @@ export const MembersListItem: FC<MembersListItemProps> = ({ member, householdID 
 
   return (
     <Tr key={member.id}>
-      <Td>{member.name}</Td>
+      <Td>
+        <UserDisplay user={member} />
+      </Td>
       <Td>{member.email}</Td>
       <Td isNumeric>
         <HStack spacing="2" justify="right">

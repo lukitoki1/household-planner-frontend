@@ -7,6 +7,7 @@ import { Queries } from '../../api/queries';
 import { choreService } from '../../api/services/ChoreService';
 import { BiX } from 'react-icons/all';
 import { AddAssignee } from './AddAssignee';
+import { UserDisplay } from '../../components/UserDisplay/UserDisplay';
 
 export interface ChoreAssigneeProps {
   chore: ChoreDTO;
@@ -43,7 +44,7 @@ export const ChoreAssignee: FC<ChoreAssigneeProps> = ({ chore }) => {
         <HStack>
           <b>Wykonawca: </b>
           {chore.user ? (
-            <Text>{chore.user.name}</Text>
+            <UserDisplay user={chore.user} />
           ) : (
             <Text fontStyle="italic" color="gray.500">
               nie przypisano

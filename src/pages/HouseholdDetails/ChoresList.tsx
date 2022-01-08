@@ -12,12 +12,12 @@ export interface ChoresListProps {
 }
 
 export const ChoresList: FC<ChoresListProps> = ({ householdID, filters }) => {
-  const { data, isLoading, isError } = useQuery(
+  const { data, isFetching, isError } = useQuery(
     [Queries.HOUSEHOLD_CHORES_LIST, householdID, filters],
     () => choreService.getHouseholdChores(householdID, filters),
   );
 
-  if (isLoading) {
+  if (isFetching) {
     return (
       <Center>
         <Spinner />

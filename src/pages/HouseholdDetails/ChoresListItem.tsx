@@ -11,6 +11,7 @@ import { choreService } from '../../api/services/ChoreService';
 import { useAppToast } from '../../components/Toast/useToast';
 import { queryClient } from '../../api/queryClient';
 import { Queries } from '../../api/queries';
+import { UserDisplay } from '../../components/UserDisplay/UserDisplay';
 
 export interface ChoresListItemProps {
   chore: ChoreDTO;
@@ -43,7 +44,7 @@ export const ChoresListItem: FC<ChoresListItemProps> = ({ chore }) => {
       <Td>{chore.name}</Td>
       <Td>
         {chore.user ? (
-          chore.user.name
+          <UserDisplay user={chore.user} />
         ) : (
           <Text fontStyle="italic" color="gray.500">
             nie przypisano
