@@ -39,17 +39,17 @@ export const ChoreAssignee: FC<ChoreAssigneeProps> = ({ chore }) => {
       marginBottom="8"
       minWidth="460px"
     >
-      <HStack marginBottom="4">
-        <b>Wykonawca: </b>
-        {chore.user ? (
-          <Text>
-            {chore.user.name} ({chore.user.email})
-          </Text>
-        ) : (
-          <Text fontStyle="italic" color="gray.500">
-            nie przypisano
-          </Text>
-        )}
+      <HStack marginBottom="4" justify="space-between">
+        <HStack>
+          <b>Wykonawca: </b>
+          {chore.user ? (
+            <Text>{chore.user.name}</Text>
+          ) : (
+            <Text fontStyle="italic" color="gray.500">
+              nie przypisano
+            </Text>
+          )}
+        </HStack>
         {chore.user && (
           <Button
             variant="ghost"
