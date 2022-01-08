@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useRef, useState } from 'react';
 import { Box, Button, HStack } from '@chakra-ui/react';
 import { useMutation, useQueryClient } from 'react-query';
 import { choreService } from '../../api/services/ChoreService';
@@ -17,6 +17,8 @@ export const ChorePhotoUpload: FC<ChorePhotoUploadProps> = ({ choreID }) => {
 
   const [file, setFile] = useState<File | undefined>();
 
+  const photoInputRef = useRef<HTMLInputElement>(null);
+
   const onSubmit = async () => {
     if (!file) {
       return;
@@ -32,7 +34,13 @@ export const ChorePhotoUpload: FC<ChorePhotoUploadProps> = ({ choreID }) => {
         description: `Pomyślnie dodano zdjęcie do galerii obowiązku domowego.`,
         status: 'success',
       });
+
       queryClient.invalidateQueries(Queries.CHORE_PHOTOS);
+      setFile(undefined);
+
+      if (photoInputRef.current) {
+        photoInputRef.current.value = '';
+      }
     } catch {}
   };
 
@@ -47,6 +55,7 @@ export const ChorePhotoUpload: FC<ChorePhotoUploadProps> = ({ choreID }) => {
     >
       <HStack>
         <input
+          ref={photoInputRef}
           id="aaa"
           style={{ width: '100%' }}
           type="file"
@@ -57,7 +66,7 @@ export const ChorePhotoUpload: FC<ChorePhotoUploadProps> = ({ choreID }) => {
             }
           }}
         />
-        <Button onClick={onSubmit} isLoading={mutation.isLoading}>
+        <Button onClick={onSubmit} isLoading={mutation.isLoading} isDisabled={!file}>
           Dodaj zdjęcie
         </Button>
       </HStack>
