@@ -12,7 +12,7 @@ import {
   Box,
   Flex,
 } from '@chakra-ui/react';
-import { BiMinus, BiPlus } from 'react-icons/all';
+import { BiMinus, BiPlus, BiSearch } from 'react-icons/all';
 import { ChoreFiltersFormFields, ChoreFiltersFormValues } from './choreFiltersFormValues';
 
 export interface ChoreFiltersFormProps {
@@ -36,7 +36,7 @@ export const ChoreFiltersForm: FC<ChoreFiltersFormProps> = ({ isLoading }) => {
           <HStack spacing="2" alignItems="start">
             <Field name={ChoreFiltersFormFields.NAME}>
               {(props: FieldProps<string>) => (
-                <FormControl maxWidth="50vw" isInvalid={!!errors[ChoreFiltersFormFields.NAME]}>
+                <FormControl minWidth="440px" isInvalid={!!errors[ChoreFiltersFormFields.NAME]}>
                   <FormLabel htmlFor={ChoreFiltersFormFields.NAME}>Nazwa</FormLabel>
                   <Input id={ChoreFiltersFormFields.NAME} type="text" {...props.field} />
                   <FormErrorMessage>{errors[ChoreFiltersFormFields.NAME]}</FormErrorMessage>
@@ -45,7 +45,7 @@ export const ChoreFiltersForm: FC<ChoreFiltersFormProps> = ({ isLoading }) => {
             </Field>
             <Field name={ChoreFiltersFormFields.INTERVAL}>
               {(props: FieldProps<number>) => (
-                <FormControl minWidth="500px" isInvalid={!!errors[ChoreFiltersFormFields.INTERVAL]}>
+                <FormControl minWidth="200px" isInvalid={!!errors[ChoreFiltersFormFields.INTERVAL]}>
                   <FormLabel htmlFor={ChoreFiltersFormFields.INTERVAL}>Interwał</FormLabel>
                   <HStack spacing="2">
                     <Input
@@ -84,10 +84,15 @@ export const ChoreFiltersForm: FC<ChoreFiltersFormProps> = ({ isLoading }) => {
             </Field>
           </HStack>
           <HStack spacing="2">
-            <Button variant="outline" onClick={handleReset}>
+            <Button variant="ghost" onClick={handleReset}>
               Wyczyść
             </Button>
-            <Button type="submit" isLoading={isLoading} isDisabled={isLoading}>
+            <Button
+              type="submit"
+              isLoading={isLoading}
+              isDisabled={isLoading}
+              rightIcon={<BiSearch />}
+            >
               Filtruj
             </Button>
           </HStack>
