@@ -1,13 +1,6 @@
 import { FC } from 'react';
 import { Field, FieldProps, Form, useFormikContext } from 'formik';
-import {
-  Button,
-  FormControl,
-  FormErrorMessage,
-  FormLabel,
-  HStack,
-  Input,
-} from '@chakra-ui/react';
+import { Button, FormControl, FormErrorMessage, FormLabel, HStack, Input } from '@chakra-ui/react';
 import { UserFormFields, UserFormValues } from './userFormValues';
 
 export interface UserFormProps {
