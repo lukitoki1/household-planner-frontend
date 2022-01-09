@@ -1,20 +1,28 @@
 import { FC } from 'react';
-import { Box, Link, Text, VStack } from '@chakra-ui/react';
+import { Box, HStack, Link, Text, VStack } from '@chakra-ui/react';
 import { formatDateTime } from '../../helpers/time';
 import { ChoreDTO } from '../../api/dto';
 import { Link as ReactLink } from 'react-router-dom';
 import { replaceParam } from '../../helpers/url';
 import { HOUSEHOLD_ID_PARAM, routes } from '../../routes';
 import { ChoreAssignee } from './ChoreAssignee';
+import { ChoreScheduleDisplay } from '../../components/ChoreScheduleDisplay/ChoreScheduleDisplay';
 
 export interface ChoreInfoProps {
   chore: ChoreDTO;
 }
 
 export const ChoreInfoBox: FC = ({ children }) => (
-  <Box borderRadius="8px" borderColor="gray.300" borderWidth="1px" padding="4" width="full">
+  <HStack
+    borderRadius="8px"
+    borderColor="gray.300"
+    borderWidth="1px"
+    padding="4"
+    width="full"
+    spacing="2"
+  >
     {children}
-  </Box>
+  </HStack>
 );
 
 export const ChoreInfo: FC<ChoreInfoProps> = ({ chore }) => {
@@ -40,12 +48,14 @@ export const ChoreInfo: FC<ChoreInfoProps> = ({ chore }) => {
         </ChoreInfoBox>
         <ChoreInfoBox>
           <b>Harmonogram: </b>
-          {chore.intervalDays === 1 ? 'Codziennie ' : `Co ${chore.intervalDays} dni `}
-          od {formatDateTime(new Date(chore.startDate))}
+          <ChoreScheduleDisplay
+            startDate={new Date(chore.startDate)}
+            intervalDays={chore.intervalDays}
+          />
         </ChoreInfoBox>
         <ChoreInfoBox>
           <b>Następne wystąpienie: </b>
-          {formatDateTime(new Date(chore.nextOccurence))}
+          <Text>{formatDateTime(new Date(chore.nextOccurence))}</Text>
         </ChoreInfoBox>
         <ChoreAssignee chore={chore} />
       </VStack>

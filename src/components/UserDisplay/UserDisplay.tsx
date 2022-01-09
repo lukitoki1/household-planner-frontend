@@ -16,7 +16,7 @@ export const UserDisplay: FC<UserDisplayProps> = ({ user }) => {
     <HStack spacing="2">
       <Text>{user.name}</Text>
       {isCurrentUser && <Badge colorScheme="teal">Ja</Badge>}
-      {user.isOwner && <Badge colorScheme="purple">Właściciel</Badge>}
+      {user.is_owner && <Badge colorScheme="purple">Właściciel</Badge>}
     </HStack>
   );
 };

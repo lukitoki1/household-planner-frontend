@@ -38,6 +38,7 @@ export const MembersListItem: FC<MembersListItemProps> = ({ member, householdID 
         history.push(routes.householdsList);
       } else {
         await queryClient.invalidateQueries(Queries.HOUSEHOLD_MEMBERS_LIST);
+        await queryClient.invalidateQueries(Queries.HOUSEHOLD_CHORES_LIST);
       }
     } catch {}
   };
@@ -50,7 +51,7 @@ export const MembersListItem: FC<MembersListItemProps> = ({ member, householdID 
       <Td>{member.email}</Td>
       <Td isNumeric>
         <HStack spacing="2" justify="right">
-          <Button onClick={deleteMember} leftIcon={<BiUserX />} isDisabled={member.isOwner}>
+          <Button onClick={deleteMember} leftIcon={<BiUserX />} isDisabled={member.is_owner}>
             Usuń
           </Button>
         </HStack>

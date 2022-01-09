@@ -11,6 +11,7 @@ import {
   Textarea,
   Text,
   IconButton,
+  Box,
 } from '@chakra-ui/react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -19,6 +20,7 @@ import { ChoreFormFields, ChoreFormValues } from './choreFormValues';
 import { languageTranslations } from '../../values';
 import { pl } from 'date-fns/locale';
 import { BiMinus, BiPlus } from 'react-icons/all';
+import { ChoreScheduleDisplay } from '../../components/ChoreScheduleDisplay/ChoreScheduleDisplay';
 
 export interface ChoreFormProps {
   isEditing?: boolean;
@@ -92,7 +94,7 @@ export const ChoreForm: FC<ChoreFormProps> = ({ isEditing, onCancel }) => {
           <FormControl
             maxWidth="50vw"
             isInvalid={!!errors[ChoreFormFields.INTERVAL]}
-            marginBottom="12"
+            marginBottom="8"
           >
             <FormLabel htmlFor={ChoreFormFields.INTERVAL}>Interwał występowania</FormLabel>
             <HStack spacing="2">
@@ -119,6 +121,13 @@ export const ChoreForm: FC<ChoreFormProps> = ({ isEditing, onCancel }) => {
           </FormControl>
         )}
       </Field>
+      <Box marginBottom="12">
+        <ChoreScheduleDisplay
+          startDate={values[ChoreFormFields.START_DATE]}
+          intervalDays={values[ChoreFormFields.INTERVAL]}
+          isItalic
+        />
+      </Box>
       <HStack spacing="2">
         <Button variant="outline" onClick={onCancel}>
           Anuluj
