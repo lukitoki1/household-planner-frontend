@@ -9,11 +9,17 @@ export type Languages = {
   en: string;
   ru: string;
   zh: string;
+  de: string;
+  fr: string;
+  es: string;
 };
 
 export const languageTranslations: Languages = {
   pl: 'Polski',
   en: 'Angielski',
-  ru: 'Rosyjski',
   zh: 'Chiński',
+  fr: 'Francuski',
+  es: 'Hiszpański',
+  de: 'Niemiecki',
+  ru: 'Rosyjski',
 };
